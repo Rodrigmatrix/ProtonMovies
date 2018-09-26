@@ -4,11 +4,18 @@ firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(e
     var errorMessage = error.message;
     // ...
 });
-firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+firebase.auth().signInWithEmailAndPassword(first_name, last_name, email, password).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
-    var errorMessage = error.message;
-    // ...
+        var errorMessage = error.message;
+        // [START_EXCLUDE]
+        if (errorCode == 'auth/weak-password') {
+          alert('Essa senha não é segura.');
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
+        // [END_EXCLUDE]
 });
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {

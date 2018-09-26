@@ -64,26 +64,37 @@
           </li>
         </ul>
       </div>
-    <div class="card-panel blue z-depth-5 center bold">Login</div>
+      <!--Nome da página banner-->
+    <div class="card-panel blue z-depth-5 center bold">Cadastro</div>
 
     <div class="row">
-        <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
-          <label for="email">Email</label>
-        </div>
-        <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
-          <label for="password">Senha</label>
-        </div>
-        <a class="blue left waves-effect waves-light btn" style="padding:0px 50px; position: absolute; left: 400px;
-        top: 810px;">Login</a>
-
-        <a href="passwordrecovery.html" class="blue left waves-effect waves-light btn" style="position: absolute; left: 550px;
-        top: 810px;">Esqueci Minha Senha</a>
-
-        <a href="signup.html" class="blue left waves-effect waves-light btn" style="padding:0px 50px; position: absolute; left: 750px;
-        top: 810px;">Cadastro</a>
+        <form class="col s12">
+            <div class="input-field col s6">
+                <input  id="first_name" type="text" class="validate">
+                <label for="first_name">Nome</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="last_name" type="text" class="validate">
+                <label for="last_name">Sobrenome</label>
+              </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email" type="email" class="validate">
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password" type="password" class="validate">
+              <label for="password">Senha</label>
+            </div>
+          </div>
+          <a onclick="firebase.auth().
+          signInWithEmailAndPassword(first_name, last_name, email, password).catch(function(error) "
+            class="blue left waves-effect waves-light btn" style="position: absolute; left: 620px;
+            top: 880px;">Cadastrar</a>
+        </form>
+      </div>
 </body>
 
 <script>
@@ -101,5 +112,18 @@ document.addEventListener('DOMContentLoaded', function() {
   $(document).ready(function(){
     $('.slider').slider();
   });
+  firebase.auth().signInWithEmailAndPassword(first_name, last_name, email, password).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+        var errorMessage = error.message;
+        // [START_EXCLUDE]
+        if (errorCode == 'auth/weak-password') {
+          alert('Essa senha não é segura.');
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
+        // [END_EXCLUDE]
+});
 </script>
 </html>
