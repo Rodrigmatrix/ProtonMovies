@@ -23,7 +23,7 @@
         width:300px;
     }
 </style>
-
+    <!-- Banner -->
     <nav class="blue z-depth-4" style="padding:0px 10px;">
         <div class="nav-wrapper">  
             <a href="#" class="sidenav-trigger" data-target="desktop">
@@ -31,19 +31,21 @@
             </a>
             <div class="container">
                 
-            <a href="" class="brand-logo center">Proton Movies</a>
+            <a href="index.html" class="brand-logo center">Proton Movies</a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="#">Todos as Sessões</a></li>
                 <li><a href="login.html">Login</a></li>
-                <li><a href="#">Sobre</a></li>
+                <li><a href="about.html">Sobre</a></li>
             </ul>
              <ul id="navbar" class="right"></ul>
-            </div>
-        
-        
+            </div> 
+            <ul class="sidenav" id="desktop">
+                <li><a href="#">Todos as Sessões</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="about.html">Sobre</a></li>
+            </ul>
         </div>
     </nav>
-    <!--Banner -->
     <div class="slider">
         <ul class="slides">
           <li>
@@ -54,7 +56,7 @@
             </div>
           </li>
           <li>
-            <img src="assets/infinitywar.jpg">
+            <img src="assets/infinitywar.jpg"> 
             <div class="caption bottom">
               <h3>Vingadores Guerra Infinita</h3>
               <h5 class="light grey-text text-lighten-3">Mais Vendidos</h5>
@@ -62,33 +64,26 @@
           </li>
         </ul>
       </div>
-          
-    <div class="card-panel blue z-depth-5 center bold">Em Cartaz</div>
-    <ul class="sidenav" id="desktop">
-        <li><a href="#">Todos as Sessões</a></li>
-        <li><a href="#">Login</a></li>
-        <li><a href="#">Sobre</a></li>
-    </ul>
-    <div class="row">
-            <div class="col s12 m7">
-              <div class="card">
-                <div class="card-image">
+    <div class="card-panel blue z-depth-5 center bold">Login</div>
 
-                  <img src="assets/infinitywar.jpg">
-                  <span class="card-title" position="center">Guerra Infinita</span>
-                </div>
-                <div class="card-content">
-                  <p>Homem de Ferro, Thor, Hulk e os Vingadores se unem para combater seu inimigo mais poderoso, 
-                      o maligno Thanos. Em uma missão para coletar todas as seis pedras infinitas,
-                       Thanos planeja usá-las para infligir sua vontade maléfica sobre a realidade.</p>
-                </div>
-                <div class="card-action">
-                  <a href="#">Ver mais</a>
-                </div>
-              </div>
-            </div>
-          </div>
-   
+    <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+        <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" class="validate">
+          <label for="password">Senha</label>
+        </div>
+        <a class="blue left waves-effect waves-light btn" style="padding:0px 50px; position: absolute; left: 400px;
+        top: 810px;">Login</a>
+
+        <a class="blue left waves-effect waves-light btn" style="position: absolute; left: 550px;
+        top: 810px;">Esqueci Minha Senha</a>
+
+        <a class="blue left waves-effect waves-light btn" style="padding:0px 50px; position: absolute; left: 750px;
+        top: 810px;">Cadastro</a>
 </body>
 
 <script>
