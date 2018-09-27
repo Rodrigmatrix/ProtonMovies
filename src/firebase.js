@@ -1,6 +1,7 @@
 <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
-// Initialize Firebase
-var config = {
+<script>
+  // Initialize Firebase
+  var config = {
     apiKey: "AIzaSyBcHSr4rumQW6vlDrLB4fXz4IsnedEsOGQ",
     authDomain: "protonmovies.firebaseapp.com",
     databaseURL: "https://protonmovies.firebaseio.com",
@@ -9,3 +10,4 @@ var config = {
     messagingSenderId: "404911651821"
   };
   firebase.initializeApp(config);
+</script>

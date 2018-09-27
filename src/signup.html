@@ -14,7 +14,7 @@
     <title>Proton Movies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/materialize.css" />
-    <script src="firefase.js"></script>
+    <!--script src="firebase.js"></script-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
     
 </head>
@@ -49,14 +49,14 @@
     <div class="slider">
         <ul class="slides">
           <li>
-            <img src="https://media-assets-02.thedrum.com/cache/images/thedrum-prod/s3-news-tmp-136742-imaxnewtheater--2x1--940.jpg"> <!-- random image -->
+            <img src="https://bransonimax.com/wp-content/uploads/2017/04/IMAXNewTheater.jpg"> <!-- random image -->
             <div class="caption center-align">
               <h3>Cinema Proton Movies</h3>
               <h5 class="light grey-text text-lighten-3">Compre seu ingresso agora mesmo</h5>
             </div>
           </li>
           <li>
-            <img src="assets/infinitywar.jpg"> 
+            <img src="https://images4.alphacoders.com/909/thumb-1920-909185.jpg"> 
             <div class="caption bottom">
               <h3>Vingadores Guerra Infinita</h3>
               <h5 class="light grey-text text-lighten-3">Mais Vendidos</h5>
@@ -89,14 +89,24 @@
               <label for="password">Senha</label>
             </div>
           </div>
-          <a onclick="firebase.auth().
-          signInWithEmailAndPassword(first_name, last_name, email, password).catch(function(error) "
-            class="blue left waves-effect waves-light btn" style="position: absolute; left: 620px;
-            top: 880px;">Cadastrar</a>
+          <a  onclick="signUp()" class="blue left waves-effect waves-light btn" style="padding:0px 40px; position: absolute; left: 880px;
+        top: 900px;">Cadastro</a>
         </form>
       </div>
 </body>
-
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBcHSr4rumQW6vlDrLB4fXz4IsnedEsOGQ",
+    authDomain: "protonmovies.firebaseapp.com",
+    databaseURL: "https://protonmovies.firebaseio.com",
+    projectId: "protonmovies",
+    storageBucket: "protonmovies.appspot.com",
+    messagingSenderId: "404911651821"
+  };
+  firebase.initializeApp(config);
+</script>
 <script>
 $(document).ready(function(){
     $('.sidenav').sidenav();
@@ -112,18 +122,71 @@ document.addEventListener('DOMContentLoaded', function() {
   $(document).ready(function(){
     $('.slider').slider();
   });
-  firebase.auth().signInWithEmailAndPassword(first_name, last_name, email, password).catch(function(error) {
+
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+
+    document.getElementById("user_div").style.display = "block";
+    document.getElementById("login_div").style.display = "none";
+
+    var user = firebase.auth().currentUser;
+
+    if(user != null){
+
+      var email_id = user.email;
+      document.getElementById("user_para").innerHTML = "Welcome User : " + email_id;
+
+    }
+
+  } else {
+    // No user is signed in.
+
+    document.getElementById("user_div").style.display = "none";
+    document.getElementById("login_div").style.display = "block";
+
+  }
+});
+
+function login(){
+
+  var userEmail = document.getElementById("email").value;
+  var userPass = document.getElementById("password").value;
+  var userName = document.getElementById("first_name").value;
+  var userLastName = document.getElementById("last_name").value;
+
+  firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
-        var errorMessage = error.message;
-        // [START_EXCLUDE]
-        if (errorCode == 'auth/weak-password') {
-          alert('Essa senha não é segura.');
-        } else {
-          alert(errorMessage);
-        }
-        console.log(error);
-        // [END_EXCLUDE]
+    var errorMessage = error.message;
+
+    window.alert("Error : " + errorMessage);
+    // ...
+  });
+}
+function logout(){
+  firebase.auth().signOut();
+}
+
+function signUp(){
+
+  var userEmail = document.getElementById("email").value;
+  var userPass = document.getElementById("password").value;
+  var userName = document.getElementById("first_name").value;
+  var userLastName = document.getElementById("last_name").value;
+
+  firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+      if(error==false){
+        M.toast({html: error})
+      }
+      else{
+        M.toast({html: 'Cadastro realizado com sucesso'})
+      }
+  
+ 
+    
+  
 });
+}
 </script>
 </html>
