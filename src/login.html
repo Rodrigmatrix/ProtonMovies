@@ -76,7 +76,7 @@
           <input id="password" type="password" class="validate">
           <label for="password">Senha</label>
         </div>
-        <a class="blue left waves-effect waves-light btn" style="padding:0px 50px; position: absolute; left: 400px;
+        <a onclick="login()" class="blue left waves-effect waves-light btn" style="padding:0px 50px; position: absolute; left: 400px;
         top: 810px;">Login</a>
 
         <a href="passwordrecovery.html" class="blue left waves-effect waves-light btn" style="position: absolute; left: 550px;
@@ -85,7 +85,19 @@
         <a href="signup.html" class="blue left waves-effect waves-light btn" style="padding:0px 50px; position: absolute; left: 750px;
         top: 810px;">Cadastro</a>
 </body>
-
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBcHSr4rumQW6vlDrLB4fXz4IsnedEsOGQ",
+      authDomain: "protonmovies.firebaseapp.com",
+      databaseURL: "https://protonmovies.firebaseio.com",
+      projectId: "protonmovies",
+      storageBucket: "protonmovies.appspot.com",
+      messagingSenderId: "404911651821"
+    };
+    firebase.initializeApp(config);
+  </script>
 <script>
 $(document).ready(function(){
     $('.sidenav').sidenav();
@@ -101,5 +113,47 @@ document.addEventListener('DOMContentLoaded', function() {
   $(document).ready(function(){
     $('.slider').slider();
   });
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+
+    document.getElementById("user_div").style.display = "block";
+    document.getElementById("login_div").style.display = "none";
+
+    var user = firebase.auth().currentUser;
+
+    if(user != null){
+
+      var email_id = user.email;
+      document.getElementById("user_para").innerHTML = "Welcome User : " + email_id;
+
+    }
+
+  } else {
+    // No user is signed in.
+
+    document.getElementById("user_div").style.display = "none";
+    document.getElementById("login_div").style.display = "block";
+
+  }
+});
+
+function login(){
+
+  var userEmail = document.getElementById("email").value;
+  var userPass = document.getElementById("password").value;
+
+  firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+
+    M.toast({html: errorMessage})
+    // ...
+  });
+}
+function logout(){
+  firebase.auth().signOut();
+}
 </script>
 </html>

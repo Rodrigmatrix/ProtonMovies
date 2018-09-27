@@ -90,7 +90,7 @@
             </div>
           </div>
           <a  onclick="signUp()" class="blue left waves-effect waves-light btn" style="padding:0px 40px; position: absolute; left: 880px;
-        top: 900px;">Cadastro</a>
+        top: 900px;">Cadastrar</a>
         </form>
       </div>
 </body>
@@ -123,50 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
     $('.slider').slider();
   });
 
-  firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // User is signed in.
-
-    document.getElementById("user_div").style.display = "block";
-    document.getElementById("login_div").style.display = "none";
-
-    var user = firebase.auth().currentUser;
-
-    if(user != null){
-
-      var email_id = user.email;
-      document.getElementById("user_para").innerHTML = "Welcome User : " + email_id;
-
-    }
-
-  } else {
-    // No user is signed in.
-
-    document.getElementById("user_div").style.display = "none";
-    document.getElementById("login_div").style.display = "block";
-
-  }
-});
-
-function login(){
-
-  var userEmail = document.getElementById("email").value;
-  var userPass = document.getElementById("password").value;
-  var userName = document.getElementById("first_name").value;
-  var userLastName = document.getElementById("last_name").value;
-
-  firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-
-    window.alert("Error : " + errorMessage);
-    // ...
-  });
-}
-function logout(){
-  firebase.auth().signOut();
-}
+  
 
 function signUp(){
 
@@ -176,7 +133,7 @@ function signUp(){
   var userLastName = document.getElementById("last_name").value;
 
   firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).catch(function(error) {
-      if(error==false){
+      if(error){
         M.toast({html: error})
       }
       else{
