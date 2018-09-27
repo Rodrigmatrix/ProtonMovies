@@ -40,7 +40,7 @@
              <ul id="navbar" class="right"></ul>
             </div> 
             <ul class="sidenav" id="desktop">
-                <li><a href="#">Todos as Sessões</a></li>
+                <li><a href="#">Todas as Sessões</a></li>
                 <li><a href="login.html">Login</a></li>
                 <li><a href="about.html">Sobre</a></li>
             </ul>
@@ -131,19 +131,25 @@ function signUp(){
   var userPass = document.getElementById("password").value;
   var userName = document.getElementById("first_name").value;
   var userLastName = document.getElementById("last_name").value;
-
-  firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).catch(function(error) {
-      if(error){
-        M.toast({html: error})
-      }
-      else{
-        M.toast({html: 'Cadastro realizado com sucesso'})
-      }
-  
- 
-    
-  
-});
-}
+  firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).then(function(userCredential){
+    M.toast({html: 'Usuário cadastrado com sucesso'});  
+    sendEmailVerification();
+  })
+  .catch(function(error) {
+   // ERROR!! -> show the error, as you are already doing
+   var errorToast = error;
+   M.toast({html: errorToast});  
+   }
+)}
+function sendEmailVerification() {
+      // [START sendemailverification]
+      firebase.auth().currentUser.sendEmailVerification().then(function() {
+        // Email Verification sent!
+        // [START_EXCLUDE]
+        M.toast({html: 'Confirme seu email'})
+        // [END_EXCLUDE]
+      });
+      // [END sendemailverification]
+    }
 </script>
 </html>

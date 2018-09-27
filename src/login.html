@@ -143,13 +143,15 @@ function login(){
   var userEmail = document.getElementById("email").value;
   var userPass = document.getElementById("password").value;
 
-  firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+  firebase.auth().signInWithEmailAndPassword(userEmail, userPass).then(function(userCredential) {
     // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-
-    M.toast({html: errorMessage})
-    // ...
+    M.toast({html: 'Sucesso'}); 
+  })
+.catch(function(error) {
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  var errorToast = error;
+  M.toast({html: errorMessage});  
   });
 }
 function logout(){
