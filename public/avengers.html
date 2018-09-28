@@ -14,7 +14,7 @@
     <title>Proton Movies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/materialize.css" />
-    <script src="firefase.js"></script>
+    <!--script src="firebase.js"></script-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
     
 </head>
@@ -49,7 +49,7 @@
     <div class="slider">
         <ul class="slides">
           <li>
-            <img src="https://media-assets-02.thedrum.com/cache/images/thedrum-prod/s3-news-tmp-136742-imaxnewtheater--2x1--940.jpg"> <!-- random image -->
+            <img src="https://bransonimax.com/wp-content/uploads/2017/04/IMAXNewTheater.jpg"> <!-- random image -->
             <div class="caption center-align">
               <h3>Cinema Proton Movies</h3>
               <h5 class="light grey-text text-lighten-3">Compre seu ingresso agora mesmo</h5>
@@ -64,37 +64,44 @@
           </li>
         </ul>
       </div>
-    <div class="card-panel blue z-depth-5 center bold">Página de usuário</div>
-    <a onclick="loggedIn()" class="blue left waves-effect waves-light btn" style="padding:0px 50px; position: absolute; left: 400px;
-        top: 810px;">Login</a>
+    <div class="card-panel blue z-depth-5 center bold">Detalhes</div>
 
-    <script>
-        var user = firebase.auth().currentUser;
-        var name, email, photoUrl, uid, emailVerified;
 
-        if (user != null) {
-        name = user.displayName;
-        email = user.email;
-         photoUrl = user.photoURL;
-        emailVerified = user.emailVerified;
-         uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
-                   // this value to authenticate with your backend server, if
-                   // you have one. Use User.getToken() instead.
-}
-        function loggedIn(){
-            firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                // User is signed in.
-                M.toast({html: 'User signed in'});
-            }        
-            else {
-                // No user is signed in.
-                M.toast({html: 'User not signed in'});
-            }
-             });
-        }
-    </script>
-    
+    <div class="card-panel blue z-depth-5 center bold">Horários</div>
+
+    <table class="striped">
+        <thead>
+          <tr>
+              <th>Filme</th>
+              <th>Sala</th>
+              <th>Horários</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Vingadores Guerra Infinita</td>
+            <td>1-Imax</td>
+            <td>
+                <a  href="comprarIngresso.html" class="blue left waves-effect waves-light btn ">13:10</a>
+            </td>
+          </tr>
+          <tr>
+            <td>Vingadores Guerra Infinita</td>
+            <td>1-Imax</td>
+            <td>
+                <a  href="" class="blue left waves-effect waves-light btn ">16:10</a>
+            </td>
+          </tr>
+          <tr>
+            <td>Vingadores Guerra Infinita</td>
+            <td>2-3D</td>
+            <td>
+                <a  href="" class="blue left waves-effect waves-light btn ">15:10</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 </body>
 <footer class="blue page-footer">
     <div class="container">
@@ -118,6 +125,19 @@
       </div>
     </div>
   </footer>
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBcHSr4rumQW6vlDrLB4fXz4IsnedEsOGQ",
+    authDomain: "protonmovies.firebaseapp.com",
+    databaseURL: "https://protonmovies.firebaseio.com",
+    projectId: "protonmovies",
+    storageBucket: "protonmovies.appspot.com",
+    messagingSenderId: "404911651821"
+  };
+  firebase.initializeApp(config);
+</script>
 <script>
 $(document).ready(function(){
     $('.sidenav').sidenav();
@@ -133,5 +153,34 @@ document.addEventListener('DOMContentLoaded', function() {
   $(document).ready(function(){
     $('.slider').slider();
   });
+
+  
+
+function signUp(){
+
+  var userEmail = document.getElementById("email").value;
+  var userPass = document.getElementById("password").value;
+  var userName = document.getElementById("first_name").value;
+  var userLastName = document.getElementById("last_name").value;
+  firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).then(function(userCredential){
+    M.toast({html: 'Usuário cadastrado com sucesso'});  
+    sendEmailVerification();
+  })
+  .catch(function(error) {
+   // ERROR!! -> show the error, as you are already doing
+   var errorToast = error;
+   M.toast({html: errorToast});  
+   }
+)}
+function sendEmailVerification() {
+      // [START sendemailverification]
+      firebase.auth().currentUser.sendEmailVerification().then(function() {
+        // Email Verification sent!
+        // [START_EXCLUDE]
+        M.toast({html: 'Confirme seu email'});
+        // [END_EXCLUDE]
+      });
+      // [END sendemailverification]
+    }
 </script>
 </html>

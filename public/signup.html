@@ -146,7 +146,7 @@ function sendEmailVerification() {
       firebase.auth().currentUser.sendEmailVerification().then(function() {
         // Email Verification sent!
         // [START_EXCLUDE]
-        M.toast({html: 'Confirme seu email'})
+        M.toast({html: 'Confirme seu email'});
         // [END_EXCLUDE]
       });
       // [END sendemailverification]

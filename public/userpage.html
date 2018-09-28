@@ -64,26 +64,36 @@
           </li>
         </ul>
       </div>
-    <div class="card-panel blue z-depth-5 center bold">Login</div>
-
-    <div class="row">
-        <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
-          <label for="email">Email</label>
-        </div>
-        <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
-          <label for="password">Senha</label>
-        </div>
-        <a class="blue left waves-effect waves-light btn" style="padding:0px 50px; position: absolute; left: 400px;
+    <div class="card-panel blue z-depth-5 center bold">Página de usuário</div>
+    <a onclick="loggedIn()" class="blue left waves-effect waves-light btn" style="padding:0px 50px; position: absolute; left: 400px;
         top: 810px;">Login</a>
+    <script>
+        var user = firebase.auth().currentUser;
+        var name, email, photoUrl, uid, emailVerified;
 
-        <a href="passwordrecovery.html" class="blue left waves-effect waves-light btn" style="position: absolute; left: 550px;
-        top: 810px;">Esqueci Minha Senha</a>
-
-        <a href="signup.html" class="blue left waves-effect waves-light btn" style="padding:0px 50px; position: absolute; left: 750px;
-        top: 810px;">Cadastro</a>
+        if (user != null) {
+        name = user.displayName;
+        email = user.email;
+         photoUrl = user.photoURL;
+        emailVerified = user.emailVerified;
+         uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+                   // this value to authenticate with your backend server, if
+                   // you have one. Use User.getToken() instead.
+}
+        function loggedIn(){
+            firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // User is signed in.
+                M.toast({html: 'User signed in'});
+            }        
+            else {
+                // No user is signed in.
+                M.toast({html: 'User not signed in'});
+            }
+             });
+        }
+    </script>
+    
 </body>
 
 <script>

@@ -40,7 +40,7 @@
              <ul id="navbar" class="right"></ul>
             </div> 
             <ul class="sidenav" id="desktop">
-                <li><a href="#">Todos as Sessões</a></li>
+                <li><a href="#">Todas as Sessões</a></li>
                 <li><a href="login.html">Login</a></li>
                 <li><a href="about.html">Sobre</a></li>
             </ul>
@@ -146,12 +146,13 @@ function login(){
   firebase.auth().signInWithEmailAndPassword(userEmail, userPass).then(function(userCredential) {
     // Handle Errors here.
     M.toast({html: 'Sucesso'}); 
+    window.location.href = "userpage.html"
   })
 .catch(function(error) {
   var errorCode = error.code;
   var errorMessage = error.message;
   var errorToast = error;
-  M.toast({html: errorMessage});  
+  M.toast({html: error});  
   });
 }
 function logout(){
