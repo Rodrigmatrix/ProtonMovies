@@ -1,4 +1,4 @@
-class Sessao{
+class Sessao extends Sala{
 
     constructor(data,horario,numeroSala,cadeiras,filme){
         this.data = data;
@@ -6,22 +6,24 @@ class Sessao{
         this.numeroSala = numeroSala;
         this.cadeiras = cadeiras;
         this.filme = filme;
+        cadeirasArray[cadeiras];
     } 
 
     comprarIngresso(userid,cadeira){
-        for(var i=0;i<cadeiras.sizeof();i++){
-            if(cadeiras[i]!=null){
-                cadeiras[cadeira]=userid;
-            }
+        if(cadeirasArray[cadeira]!=null){
+            cadeirasArray[cadeira]=userid;
         }
-        
+        else{
+            M.toast({html: 'Assento já está ocupada'}); 
+        }     
     }
 
-    cancelarCompra(userid){
-        for(var i=0;i<cadeiras.sizeof();i++){
-            if(cadeiras[i]===userid){
-                cadeiras[i]=null;
-            }
+    cancelarCompra(cadeira){
+        if(cadeirasArray[cadeira]!=null){
+            cadeirasArray[cadeira]=null;
+        }
+        else{
+            M.toast({html: 'Assento não está ocupado'}); 
         }
     }
 

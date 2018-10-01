@@ -1,5 +1,5 @@
 class Sessao extends Sala{
-
+    
     constructor(data,horario,numeroSala,cadeiras,filme){
         this.data = data;
         this.horario = horario;
