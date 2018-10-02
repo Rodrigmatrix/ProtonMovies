@@ -21,13 +21,14 @@
 <script src="Assento.ts"></script>
 <script>
 function executar(){
-var assento = new Assento();
+let assento = new Object();
 var arrayAssentos = new Array();
-for(var i=0;i<2;i++){
-    arrayAssentos[i] = as;
-    arrayAssentos[i].setAssento(i,false);
+for(var i=0;i<=2;i++){
+    arrayAssentos[i] = assento;
+    arrayAssentos[i].numeroAssento = i;
+    arrayAssentos[i].ocupado = false;
 }
-for(var i=0;i<2;i++){
+for(var i=0;i<=2;i++){
     console.log(arrayAssentos[i].numeroAssento);
     console.log(arrayAssentos[i].ocupado);
 }
