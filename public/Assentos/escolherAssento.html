@@ -19,8 +19,22 @@
 </head>
 <script src="Sessao.ts"></script>
 <script src="Assento.ts"></script>
-
+<script>
+function executar(){
+let assento = new Object();
+var arrayAssentos = new Array();
+for(var i=0;i<=2;i++){
+    arrayAssentos[i] = assento;
+    arrayAssentos[i].numeroAssento = i;
+    arrayAssentos[i].ocupado = false;
+}
+for(var i=0;i<=2;i++){
+    console.log(arrayAssentos[i].numeroAssento);
+    console.log(arrayAssentos[i].ocupado);
+}
+}
+</script>
 <body>
-    
+    <button onclick="executar()">Executar</button>
 </body>
 </html>

@@ -22,6 +22,7 @@
     .card {
         width:300px;
     }
+    
 </style>
     <!-- Banner -->
     <nav class="blue z-depth-4" style="padding:0px 10px;">
@@ -66,47 +67,49 @@
       </div>
     <div class="card-panel blue z-depth-5 center bold">Login</div>
 
-    <div class="row">
+    <div class="container">
         <div class="input-field col s12">
           <input id="email" type="email" class="validate">
           <label for="email">Email</label>
         </div>
         <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
-          <label for="password">Senha</label>
+          <div class="input-field col s12">
+            <input id="password" type="password" class="validate">
+            <label for="password">Senha</label>
+          </div>
         </div>
-        <a onclick="login()" class="blue left waves-effect waves-light btn" style="padding:0px 50px; position: absolute; left: 400px;
-        top: 810px;">Login</a>
-
-        <a href="passwordrecovery.html" class="blue left waves-effect waves-light btn" style="position: absolute; left: 550px;
-        top: 810px;">Esqueci Minha Senha</a>
-
-        <a href="signup.html" class="blue left waves-effect waves-light btn" style="padding:0px 50px; position: absolute; left: 750px;
-        top: 810px;">Cadastro</a>
+        <div class="row">
+              <a onclick="login()" class="col s1 blue left waves-effect waves-light btn">Login</a>
+              <a href="passwordrecovery.html" class="blue left waves-effect waves-light btn">Esqueci Minha Senha</a>
+            <a href="signup.html" class="blue left waves-effect waves-light btn">Cadastro</a>
+        </div>
+        
+    </div>
+&emsp;
 </body>
 <footer class="blue page-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">Cinema Proton Movies</h5>
-        <p class="grey-text text-lighten-4">Todos os direitos reservados.</p>
-      </div>
-      <div class="col l4 offset-l2 s12">
-        <h5 class="white-text">Links</h5>
-        <ul>
-          <li><a class="grey-text text-lighten-3" href="about.html">Sobre</a></li>
-          <li><a class="grey-text text-lighten-3" href="https://github.com/Rodrigmatrix/ProtonMovies">Github</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="footer-copyright">
     <div class="container">
-    © 2018 Proton Apps
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Cinema Proton Movies</h5>
+          <p class="grey-text text-lighten-4">Todos os direitos reservados.</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="about.html">Sobre</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://github.com/Rodrigmatrix/ProtonMovies">Github</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2018 Proton Apps
+      </div>
+    </div>
+  </footer>
+
 <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 <script>
     // Initialize Firebase

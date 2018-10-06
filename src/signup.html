@@ -89,7 +89,7 @@
               <label for="password">Senha</label>
             </div>
           </div>
-          <a  onclick="signUp()" class="blue left waves-effect waves-light btn" style="padding:0px 40px; position: absolute; left: 880px;
+          <a  onclick="writeUserData()" class="blue left waves-effect waves-light btn" style="padding:0px 40px; position: absolute; left: 880px;
         top: 900px;">Cadastrar</a>
         </form>
       </div>
@@ -163,6 +163,15 @@ function signUp(){
    M.toast({html: errorToast});  
    }
 )}
+
+function writeUserData(userId, name,last_name, email, password) {
+  firebase.database().ref('users/' + userId).set({
+    name: name,
+    last_name: last_name,
+    email : email,
+    password: password
+  });
+}
 function sendEmailVerification() {
       // [START sendemailverification]
       firebase.auth().currentUser.sendEmailVerification().then(function() {
