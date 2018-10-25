@@ -15,3 +15,25 @@ for(var i=0;i<=2;i++){
         document.getElementById("img").src = "src/ocupado.png"
     }
 }
+var image = 'livre';
+        var qtdIngressos=0;
+        var arrayIngressos = new Array();
+        function setAssento(assento){
+            if(image == 'livre'){
+                document.getElementById(assento).src = "ocupado.png";
+                if(arrayIngressos[qtdIngressos]==null){
+                    arrayIngressos[qtdIngressos]=assento;
+                    qtdIngressos++;
+                }
+                image = 'ocupado';
+            }
+            else if(image == 'ocupado'){
+                document.getElementById(assento).src = "livre.png";
+                if(arrayIngressos[qtdIngressos]==null){
+                    arrayIngressos[qtdIngressos]=assento;
+                    qtdIngressos++;
+                }
+                image = 'livre';
+            }
+            
+        }
