@@ -36,6 +36,7 @@
   }
   function logout(){
     firebase.auth().signOut();
+    window.location.href = "index.html"
   }
 
   function loginStatus(){
@@ -44,21 +45,18 @@
       console.log('Logged In');
       window.location.href = "userpage.html"
     }
-    else{
-      M.toast({html: 'User not Logged In'}); 
-    }
     });
   }
 
   function signUp(){
-
     var userEmail = document.getElementById("email").value;
     var userPass = document.getElementById("password").value;
-    var userName = document.getElementById("first_name").value;
-    var userLastName = document.getElementById("last_name").value;
+    var userName = document.getElementById("name").value;
+    var userLastName = document.getElementById("last").value;
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).then(function(userCredential){
       M.toast({html: 'Usuário cadastrado com sucesso'});  
       sendEmailVerification();
+      writeUserData(userName,userLastName);
     })
     .catch(function(error) {
      // ERROR!! -> show the error, as you are already doing
@@ -68,10 +66,18 @@
   )}
   
   function writeUserData(name,last_name) {
-    firebase.database().ref('users/' + userId).set({
+    firebase.database().ref('users/users' + getUserId()).set({
       name: name,
       last_name: last_name,
     });
+  }
+  function getUserId(){
+    firebase.auth().onAuthStateChanged(firebaseUser =>{
+      if(firebaseUser){
+        console.log('Logged In');
+        return firebaseUser;
+      }
+      });
   }
   function sendEmailVerification() {
         // [START sendemailverification]
@@ -82,5 +88,15 @@
           // [END_EXCLUDE]
         });
         // [END sendemailverification]
+  }
+  function sendPasswordReset(){
+    var auth = firebase.auth();
+    var emailAddress = document.getElementById(email);
+
+    auth.sendPasswordResetEmail(emailAddress).then(function() {
+      // Email sent.
+    }).catch(function(error) {
+    // An error happened.
+    });
   }
   var user = firebase.auth().currentUser;
