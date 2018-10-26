@@ -14,9 +14,12 @@
     <title>Proton Movies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/materialize.css" />
+    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
     <script src="firebase.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
-    
+    <script>
+      loginStatus();
+    </script>
 </head>
 <style>
     .card {
@@ -40,8 +43,8 @@
             </ul>
              <ul id="navbar" class="right"></ul>
             </div> 
-            <ul class="sidenav" id="desktop">
-                <li><a href="#">Todas as Sessões</a></li>
+            <ul class="sidenav" id="desktop">               
+                <li><a href="sessoes.html">Todas as Sessões</a></li>
                 <li><a href="login.html">Login</a></li>
                 <li><a href="about.html">Sobre</a></li>
             </ul>
@@ -78,10 +81,10 @@
             <label for="password">Senha</label>
           </div>
         </div>
-        <div class="row">
-              <a onclick="login()" class="col s1 blue left waves-effect waves-light btn">Login</a>
-              <a href="passwordrecovery.html" class="blue left waves-effect waves-light btn">Esqueci Minha Senha</a>
-            <a href="signup.html" class="blue left waves-effect waves-light btn">Cadastro</a>
+        <div class="center">
+              <a onclick="login()" class="col s1 blue waves-effect waves-light btn">Login</a>
+              <a href="passwordrecovery.html" class="blue waves-effect waves-light btn">Esqueci Minha Senha</a>
+            <a href="signup.html" class="blue waves-effect waves-light btn">Cadastro</a>
         </div>
         
     </div>
@@ -110,19 +113,6 @@
     </div>
   </footer>
 
-<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
-<script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyBcHSr4rumQW6vlDrLB4fXz4IsnedEsOGQ",
-      authDomain: "protonmovies.firebaseapp.com",
-      databaseURL: "https://protonmovies.firebaseio.com",
-      projectId: "protonmovies",
-      storageBucket: "protonmovies.appspot.com",
-      messagingSenderId: "404911651821"
-    };
-    firebase.initializeApp(config);
-  </script>
 <script>
 $(document).ready(function(){
     $('.sidenav').sidenav();
@@ -138,50 +128,5 @@ document.addEventListener('DOMContentLoaded', function() {
   $(document).ready(function(){
     $('.slider').slider();
   });
-  firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // User is signed in.
-
-    document.getElementById("user_div").style.display = "block";
-    document.getElementById("login_div").style.display = "none";
-
-    var user = firebase.auth().currentUser;
-
-    if(user != null){
-
-      var email_id = user.email;
-      document.getElementById("user_para").innerHTML = "Welcome User : " + email_id;
-
-    }
-
-  } else {
-    // No user is signed in.
-
-    document.getElementById("user_div").style.display = "none";
-    document.getElementById("login_div").style.display = "block";
-
-  }
-});
-
-function login(){
-
-  var userEmail = document.getElementById("email").value;
-  var userPass = document.getElementById("password").value;
-
-  firebase.auth().signInWithEmailAndPassword(userEmail, userPass).then(function(userCredential) {
-    // Handle Errors here.
-    M.toast({html: 'Sucesso'}); 
-    window.location.href = "userpage.html"
-  })
-.catch(function(error) {
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  var errorToast = error;
-  M.toast({html: error});  
-  });
-}
-function logout(){
-  firebase.auth().signOut();
-}
 </script>
 </html>

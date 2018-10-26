@@ -8,7 +8,7 @@
     messagingSenderId: "404911651821"
   };
   firebase.initializeApp(config);
-
+  var firestore = firebase.firestore();
   function login(){
     var userEmail = document.getElementById("email").value;
     var userPass = document.getElementById("password").value;
@@ -99,4 +99,4 @@
     // An error happened.
     });
   }
-  var user = firebase.auth().currentUser;
+  

@@ -1,39 +1,19 @@
-function Assento(ocupado,numeroAssento){
-    this.ocupado = ocupado;
-    this.numeroAssento = numeroAssento;
+function configurarSala(){
+    var db = db.collection('sala').doc('sala1');
+    // Set the 'capital' field of the city
+var updateSingle = db.update({
+    filme: "Vingadores Guerra Infinita"
+});
+   // var db = firebase.firestore();
+   // var docRef = db.collection('sala').doc('sala1');
+    //var setAda = docRef.set({
+     //   filme: 'Vingadores Guerra Infinita',
+      //  horário: '13:30'
+//});
 }
-var arrayAssentos = new Array();
-for(var i=0;i<=2;i++){
-    let assento = new Assento(false,i);
-    arrayAssentos[i] = assento; 
+function comprarIngresso(array){
+    firebase.database().ref('users/' + userId).set({
+      arrayIngressos: array
+    });
+  
 }
-for(var i=0;i<=2;i++){
-    if(arrayAssentos[i].ocupado==true){
-        document.getElementById("img").src = "src/livre.png"
-    }
-    else{
-        document.getElementById("img").src = "src/ocupado.png"
-    }
-}
-var image = 'livre';
-        var qtdIngressos=0;
-        var arrayIngressos = new Array();
-        function setAssento(assento){
-            if(image == 'livre'){
-                document.getElementById(assento).src = "ocupado.png";
-                if(arrayIngressos[qtdIngressos]==null){
-                    arrayIngressos[qtdIngressos]=assento;
-                    qtdIngressos++;
-                }
-                image = 'ocupado';
-            }
-            else if(image == 'ocupado'){
-                document.getElementById(assento).src = "livre.png";
-                if(arrayIngressos[qtdIngressos]==null){
-                    arrayIngressos[qtdIngressos]=assento;
-                    qtdIngressos++;
-                }
-                image = 'livre';
-            }
-            
-        }

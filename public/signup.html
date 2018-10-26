@@ -16,6 +16,8 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/materialize.css" />
     <!--script src="firebase.js"></script-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+    <script src="firebase.js"></script>
     
 </head>
 <style>
@@ -34,13 +36,15 @@
             <a href="index.html" class="brand-logo center">Proton Movies</a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="sessoes.html">Todas as Sessões</a></li>
+                <li><a href="userpage.html">Meus Ingressos</a></li>
                 <li><a href="login.html">Login</a></li>
                 <li><a href="about.html">Sobre</a></li>
             </ul>
              <ul id="navbar" class="right"></ul>
             </div> 
             <ul class="sidenav" id="desktop">
-                <li><a href="#">Todas as Sessões</a></li>
+                <li><a href="sessoes.html">Todas as Sessões</a></li>
+                <li><a href="userpage.html">Meus Ingressos</a></li>
                 <li><a href="login.html">Login</a></li>
                 <li><a href="about.html">Sobre</a></li>
             </ul>
@@ -70,11 +74,11 @@
     <div class="row">
         <form class="col s12">
             <div class="input-field col s6">
-                <input  id="first_name" type="text" class="validate">
+                <input  id="name" type="text" class="validate">
                 <label for="first_name">Nome</label>
               </div>
               <div class="input-field col s6">
-                <input id="last_name" type="text" class="validate">
+                <input id="last" type="text" class="validate">
                 <label for="last_name">Sobrenome</label>
               </div>
           <div class="row">
@@ -89,11 +93,14 @@
               <label for="password">Senha</label>
             </div>
           </div>
-          <a  onclick="signUp()" class="blue left waves-effect waves-light btn" style="padding:0px 40px; position: absolute; left: 880px;
-        top: 900px;">Cadastrar</a>
+          
         </form>
       </div>
+      <div class="center">
+        <a  onclick="signUp()" class="blue waves-effect waves-light btn">Cadastrar</a>
+      </div> 
 </body>
+&emsp;
 <footer class="blue page-footer">
   <div class="container">
     <div class="row">
@@ -116,19 +123,7 @@
     </div>
   </div>
 </footer>
-<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBcHSr4rumQW6vlDrLB4fXz4IsnedEsOGQ",
-    authDomain: "protonmovies.firebaseapp.com",
-    databaseURL: "https://protonmovies.firebaseio.com",
-    projectId: "protonmovies",
-    storageBucket: "protonmovies.appspot.com",
-    messagingSenderId: "404911651821"
-  };
-  firebase.initializeApp(config);
-</script>
+
 <script>
 $(document).ready(function(){
     $('.sidenav').sidenav();
@@ -144,34 +139,5 @@ document.addEventListener('DOMContentLoaded', function() {
   $(document).ready(function(){
     $('.slider').slider();
   });
-
-  
-
-function signUp(){
-
-  var userEmail = document.getElementById("email").value;
-  var userPass = document.getElementById("password").value;
-  var userName = document.getElementById("first_name").value;
-  var userLastName = document.getElementById("last_name").value;
-  firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).then(function(userCredential){
-    M.toast({html: 'Usuário cadastrado com sucesso'});  
-    sendEmailVerification();
-  })
-  .catch(function(error) {
-   // ERROR!! -> show the error, as you are already doing
-   var errorToast = error;
-   M.toast({html: errorToast});  
-   }
-)}
-function sendEmailVerification() {
-      // [START sendemailverification]
-      firebase.auth().currentUser.sendEmailVerification().then(function() {
-        // Email Verification sent!
-        // [START_EXCLUDE]
-        M.toast({html: 'Confirme seu email'});
-        // [END_EXCLUDE]
-      });
-      // [END sendemailverification]
-    }
 </script>
 </html>
