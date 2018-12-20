@@ -11,6 +11,10 @@ function getSala1(){
     .then(posts => console.log(posts))
 }
 
+function newSession(){
+
+}
+
 function getSala2(){
     return fetch('http://localhost:3000/sala2')
     .then(data => data.json())
