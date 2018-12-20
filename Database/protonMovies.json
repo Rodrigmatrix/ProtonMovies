@@ -1,4 +1,17 @@
+
 {
+    "movies":[
+        {
+            "id": null,
+            "name": "",
+            "genre": "",
+            "runtime": "",
+            "tickets_count": 0,
+            "description": "",
+            "poster_image": "",
+            "trailer": ""
+        }
+    ],
     "sala1": {
         "movie_id": null,
         "cadeiras": [
