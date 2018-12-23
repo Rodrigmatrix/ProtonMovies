@@ -1,11 +1,11 @@
 var movie = {
-    id: 2,
-    name: 'Avengers',
+    id: 1,
+    name: document.getElementById("name"),
+    description: document.getElementById("description"),
     genre: 'Action/Drama',
     runtime: '150',
     rated: 'R',
     tickets_count: 0,
-    description: 'agenvers fight',
     poster_image: 'dawdaw',
     trailer: 'dghdfg'
 }

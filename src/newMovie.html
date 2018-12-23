@@ -64,8 +64,62 @@
 </div>
 
 <div class="card-panel blue center bold z-depth-5">Novo Filme</div>
-<body>
 
+<body>
+    <div class="row">
+        <form class="col s12">
+            <div class="input-field col s6">
+                <input id="name" type="text" class="validate">
+                <label for="first_name">Nome do Filme</label>
+            </div>
+            <div class="input-field col s12">
+                <textarea id="description" class="materialize-textarea"></textarea>
+                <label for="description">Descrição</label>
+            </div>
+
+            <div class="input-field col s12">
+                <select multiple>
+                    <option value="1">Ação</option>
+                    <option value="2">Drama</option>
+                    <option value="3">Comédia</option>
+                    <option value="4">Aventura</option>
+                    <option value="5">Animação</option>
+                    <option value="6">Ficção Científica</option>
+                </select>
+                <label>Gênero</label>
+            </div>
+
+            <div class="input-field col s12">
+                <select>
+                    <option value="1">Livre</option>
+                    <option value="2">10 Anos</option>
+                    <option value="3">12 Anos</option>
+                    <option value="4">14 Anos</option>
+                    <option value="4">16 Anos</option>
+                    <option value="4">18 Anos</option>
+                </select>
+                <label>Classificação Indicativa</label>
+            </div>
+
+
+            <div class="input-field col s6">
+                <input id="name" type="text" class="validate">
+                <label for="first_name">Link do poster</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input id="name" type="text" class="validate">
+                <label for="first_name">Link do Trailer</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input id="name" type="text" class="validate">
+                <label for="first_name">Link do Banner</label>
+            </div>
+
+        </form>
+        <a class="btn-floating btn-large right waves-effect waves-light red" onclick="newMovie()"><i class="material-icons">add</i></a>
+    </div>
 </body>
 
 <footer class="blue page-footer">
@@ -99,7 +153,17 @@
         var elems = document.querySelectorAll('.slider');
         //var instances = M.Slider.init(elems, options);
     });
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, options);
+    });
 
+
+    // Or with jQuery
+
+    $(document).ready(function () {
+        $('select').formSelect();
+    });
     // Or with jQuery
 
     $(document).ready(function () {
