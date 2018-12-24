@@ -1,16 +1,20 @@
 {
   "movies": [
     {
-      "id": 1,
-      "name": null,
-      "description": null,
-      "genre": "Action/Drama",
-      "runtime": "150",
-      "rated": "R",
+      "name": "vingadores",
+      "description": "vingadores",
+      "release_date": "123",
+      "genre": "Aventura,Animação",
+      "runtime": "123",
+      "rated": "Livre",
       "tickets_count": 0,
-      "poster_image": "dawdaw",
-      "trailer": "dghdfg"
+      "poster_image": "awdaw",
+      "trailer": "awdwa",
+      "banner": "awda",
+      "id": 1
     }
   ],
-  "sessions": []
+  "sessions": [
+    
+  ]
 }

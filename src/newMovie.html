@@ -16,7 +16,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/materialize.css" />
     <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script src="Api.js"></script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="newMovie.css" />
 </head>
 <style>
     .card {
@@ -66,60 +67,80 @@
 <div class="card-panel blue center bold z-depth-5">Novo Filme</div>
 
 <body>
-    <div class="row">
-        <form class="col s12">
+    <div class="row ">
+        <form class="col s5">
+            <ul class="collection with-header">
+                <li class="collection-header">
+                    <h4>First Names</h4>
+                </li>
+                <li class="collection-item">Alvin</li>
+                <li class="collection-item">Alvin</li>
+                <li class="collection-item">Alvin</li>
+                <li class="collection-item">Alvin</li>
+            </ul>
             <div class="input-field col s6">
-                <input id="name" type="text" class="validate">
-                <label for="first_name">Nome do Filme</label>
+                <input id="movie_name" type="text">
+                <label for="movie_name">Nome do Filme</label>
             </div>
             <div class="input-field col s12">
-                <textarea id="description" class="materialize-textarea"></textarea>
+                <textarea id="description" type="text" class="materialize-textarea"></textarea>
                 <label for="description">Descrição</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input id="release_date" type="number" class="validate">
+                <label for="release_date">Data de Lançamento</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input id="runtime" type="number" class="validate">
+                <label for="runtime">Duração(em minutos)</label>
             </div>
 
             <div class="input-field col s12">
                 <select multiple>
-                    <option value="1">Ação</option>
-                    <option value="2">Drama</option>
-                    <option value="3">Comédia</option>
-                    <option value="4">Aventura</option>
-                    <option value="5">Animação</option>
-                    <option value="6">Ficção Científica</option>
+                    <option value="Ação">Ação</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Comédia">Comédia</option>
+                    <option value="Aventura">Aventura</option>
+                    <option value="Animação">Animação</option>
+                    <option value="Ficção Científica">Ficção Científica</option>
                 </select>
                 <label>Gênero</label>
             </div>
 
             <div class="input-field col s12">
-                <select>
-                    <option value="1">Livre</option>
-                    <option value="2">10 Anos</option>
-                    <option value="3">12 Anos</option>
-                    <option value="4">14 Anos</option>
-                    <option value="4">16 Anos</option>
-                    <option value="4">18 Anos</option>
+                <select id="rated">
+                    <option value="Livre">Livre</option>
+                    <option value="10 Anos">10 Anos</option>
+                    <option value="12 Anos">12 Anos</option>
+                    <option value="14 Anos">14 Anos</option>
+                    <option value="16 Anos">16 Anos</option>
+                    <option value="18 Anos">18 Anos</option>
                 </select>
                 <label>Classificação Indicativa</label>
             </div>
 
 
             <div class="input-field col s6">
-                <input id="name" type="text" class="validate">
-                <label for="first_name">Link do poster</label>
+                <input id="poster_link" type="text" class="validate">
+                <label for="poster_link">Link do poster</label>
             </div>
 
             <div class="input-field col s6">
-                <input id="name" type="text" class="validate">
-                <label for="first_name">Link do Trailer</label>
+                <input id="trailer_link" type="text" class="validate">
+                <label for="trailer_link">Link do Trailer</label>
             </div>
 
             <div class="input-field col s6">
-                <input id="name" type="text" class="validate">
-                <label for="first_name">Link do Banner</label>
+                <input id="banner_link" type="text" class="validate">
+                <label for="banner_link">Link do Banner</label>
             </div>
 
         </form>
         <a class="btn-floating btn-large right waves-effect waves-light red" onclick="newMovie()"><i class="material-icons">add</i></a>
     </div>
+    <script src="Api.js"></script>
 </body>
 
 <footer class="blue page-footer">
@@ -157,14 +178,17 @@
         var elems = document.querySelectorAll('select');
         var instances = M.FormSelect.init(elems, options);
     });
+    $(document).ready(function () {
+        M.updateTextFields();
+    });
 
+    // Or with jQuery
 
     // Or with jQuery
 
     $(document).ready(function () {
         $('select').formSelect();
     });
-    // Or with jQuery
 
     $(document).ready(function () {
         $('.slider').slider();
