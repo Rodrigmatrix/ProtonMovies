@@ -1,8 +1,8 @@
 
-function getMovies() {
-  return fetch('http://localhost:3000/movies')
-    .then(data => data.json())
-    .then(posts => console.log(posts))
+async function getMovies() {
+  var data = await fetch('http://localhost:3000/movies'); // notice the await
+    // code here only executes _after_ the request is done
+    return data.json();
 }
 
 function getSessions() {
@@ -250,7 +250,7 @@ function newSession() {
       }
     ]
   }
-
+  
   var options = {
     method: 'POST',
     body: JSON.stringify(session),
