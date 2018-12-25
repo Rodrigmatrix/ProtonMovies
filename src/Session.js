@@ -8,14 +8,15 @@ async function displaySessions(){
     console.log(movies);
     var sessions = await getSessions();
     for(var i in sessions){
-        if(sessions[i].id == id){
-            document.getElementById("tableSessions").innerHTML=( `
+
+        if(sessions[i].movie_id == id){
+            document.getElementById("tableSessions").innerHTML+=( `
             <tr>
                 <td>${movies[id-1].name}</td>
                 <td>${sessions[i].auditorium}</td>
                 <td>${sessions[i].image_type}</td>
                 <td>
-                <a href="" class="blue left waves-effect waves-light btn ">${sessions[i].time}</a>
+                <a href="file:///Users/rodrigogomes/Documents/Codes/ProtonMovies/src/Seats/pickSeat.html?sessionid=${sessions[i].id}" class="blue left waves-effect waves-light btn ">${sessions[i].time}</a>
                 </td>
             </tr>
             `);
