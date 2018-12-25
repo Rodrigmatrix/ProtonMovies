@@ -40,10 +40,9 @@
             </ul>
             <ul id="navbar" class="right"></ul>
         </div>
-
-
     </div>
 </nav>
+
 <!--Banner -->
 <div class="slider">
     <ul class="slides">
@@ -72,8 +71,8 @@
 
             <div class="input-field col s12">
                 <i class="material-icons prefix">movie</i>
-                <input type="text" id="autocomplete-input" class="autocomplete">
-                <label for="autocomplete-input">Nome do Filme</label>
+                <input type="text" id="movie_selected" class="autocomplete">
+                <label for="movie_selected">Nome do Filme</label>
             </div>
             <label for="lunchtime">Data da Sessão</label>
             <input type="text" id="date" class="datepicker">
@@ -105,6 +104,7 @@
         <a class="btn-floating btn-large right waves-effect waves-light red" onclick="newSession()"><i class="material-icons">add</i></a>
     </div>
     <script src="Api.js"></script>
+    <script src="Movies.js"></script>
 </body>
 
 <footer class="blue page-footer">
@@ -176,12 +176,20 @@
     });
 
     // Or with jQuery
-    var moviesArray = getMovies();
-    $(document).ready(function () {
+    getMovies().then(function(movies){
+        var dataCountry = {};
+        for (var i=0;i<movies.length;i++){
+          //console.log(movies[i].name);
+          dataCountry[movies[i].name] = null;
+        }
+        $(document).ready(function () {
         $('input.autocomplete').autocomplete({
-            moviesArray,
+            data: dataCountry,
         });
+        console.log(movies);
     });
+    });
+    
     document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.timepicker');
     var instances = M.Timepicker.init(elems, options);

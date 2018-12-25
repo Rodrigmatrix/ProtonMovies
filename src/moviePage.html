@@ -11,7 +11,7 @@
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Proton Movies</title>
+    <title id="pageName">Proton Movies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/materialize.css" />
     <!--script src="firebase.js"></script-->
@@ -65,9 +65,8 @@
         </ul>
       </div>
     <div class="card-panel blue z-depth-5 center bold">Detalhes</div>
-    <div class="center">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/QwievZ1Tx-8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    <!--img width="360" height="315" src="assets/infinitywar.jpg"-->
+    <div id="trailer" class="center">
+      
     </div>
 
     <div class="card-panel blue z-depth-5 center bold">Horários</div>
@@ -82,31 +81,8 @@
           </tr>
         </thead>
 
-        <tbody>
-          <tr>
-            <td>Vingadores Guerra Infinita</td>
-            <td>1</td>
-            <td>Imax Legendado</td>
-            <td>
-                <a  href="comprarIngresso.html" class="blue left waves-effect waves-light btn ">13:10</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Vingadores Guerra Infinita</td>
-            <td>1</td>
-            <td>Imax Legendado</td>
-            <td>
-                <a  href="" class="blue left waves-effect waves-light btn ">16:10</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Vingadores Guerra Infinita</td>
-            <td>2</td>
-            <td>3D Dublado</td>
-            <td>
-                <a  href="" class="blue left waves-effect waves-light btn ">15:10</a>
-            </td>
-          </tr>
+        <tbody id="tableSessions">
+          
         </tbody>
       </table>
     </div> 
@@ -133,24 +109,15 @@
       </div>
     </div>
   </footer>
-<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBcHSr4rumQW6vlDrLB4fXz4IsnedEsOGQ",
-    authDomain: "protonmovies.firebaseapp.com",
-    databaseURL: "https://protonmovies.firebaseio.com",
-    projectId: "protonmovies",
-    storageBucket: "protonmovies.appspot.com",
-    messagingSenderId: "404911651821"
-  };
-  firebase.initializeApp(config);
-</script>
+<script src="Api.js"></script>
+<script src="Session.js"></script>
+<script src="Movies.js"></script>
 <script>
 $(document).ready(function(){
     $('.sidenav').sidenav();
 })
-
+displaySessionsInfo();
+displaySessions();
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.slider');
     var instances = M.Slider.init(elems, options);
@@ -161,34 +128,5 @@ document.addEventListener('DOMContentLoaded', function() {
   $(document).ready(function(){
     $('.slider').slider();
   });
-
-  
-
-function signUp(){
-
-  var userEmail = document.getElementById("email").value;
-  var userPass = document.getElementById("password").value;
-  var userName = document.getElementById("first_name").value;
-  var userLastName = document.getElementById("last_name").value;
-  firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).then(function(userCredential){
-    M.toast({html: 'Usuário cadastrado com sucesso'});  
-    sendEmailVerification();
-  })
-  .catch(function(error) {
-   // ERROR!! -> show the error, as you are already doing
-   var errorToast = error;
-   M.toast({html: errorToast});  
-   }
-)}
-function sendEmailVerification() {
-      // [START sendemailverification]
-      firebase.auth().currentUser.sendEmailVerification().then(function() {
-        // Email Verification sent!
-        // [START_EXCLUDE]
-        M.toast({html: 'Confirme seu email'});
-        // [END_EXCLUDE]
-      });
-      // [END sendemailverification]
-    }
 </script>
 </html>

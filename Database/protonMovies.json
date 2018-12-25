@@ -8,8 +8,9 @@
       "runtime": "150",
       "rated": "12 Anos",
       "tickets_count": 0,
+      "playing": true,
       "poster_image": "http://t2.gstatic.com/images?q=tbn:ANd9GcS4neC_Y4U1G6u2QlEFqbCizheGBUnZg1w874qWbIcVlv9tPuSu",
-      "trailer": "http://www.youtube.com/watch?v=Aiv5sYzwGb8",
+      "trailer": "https://www.youtube.com/embed/6ZfuNTqbHE8",
       "banner": "https://s2.glbimg.com/2C0hMRuCY_7NfDPjby4_Bjmq8Nc=/e.glbimg.com/og/ed/f/original/2018/03/22/avengers-infinity-war-official-poster-2018-4o.jpg",
       "id": 1
     },
@@ -21,20 +22,21 @@
       "runtime": "106",
       "rated": "16 Anos",
       "tickets_count": 0,
+      "playing": true,
       "poster_image": "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX675_CR0,0,675,999_AL_.jpg",
-      "trailer": "http://www.youtube.com/watch?v=oWNvDmbsy9Q",
+      "trailer": "https://www.youtube.com/embed/7d_jQycdQGo",
       "banner": "https://cdn-images-1.medium.com/max/1280/1*wGfukLwVVWMNWUxxGGA5Eg.jpeg",
       "id": 2
     }
   ],
   "sessions": [
     {
-      "movie_id": null,
-      "date": "",
-      "time": "",
+      "movie_id": "1",
+      "date": "Dec 25, 2018",
+      "time": "01:04 PM",
       "auditorium": "Sala 1",
-      "image_type": "2D",
-      "ticket_price": null,
+      "image_type": "IMAX 3D",
+      "ticket_price": "40.00",
       "seats": [
         {
           "seat": 1,
@@ -240,12 +242,12 @@
       "id": 1
     },
     {
-      "movie_id": null,
-      "date": "",
-      "time": "",
+      "movie_id": "2",
+      "date": "Dec 25, 2018",
+      "time": "02:05 PM",
       "auditorium": "Sala 1",
-      "image_type": "2D",
-      "ticket_price": null,
+      "image_type": "IMAX 2D",
+      "ticket_price": "35.00",
       "seats": [
         {
           "seat": 1,

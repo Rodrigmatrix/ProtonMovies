@@ -1,14 +1,12 @@
 
 async function getMovies() {
-  var data = await fetch('http://localhost:3000/movies'); // notice the await
-    // code here only executes _after_ the request is done
+  var data = await fetch('http://localhost:3000/movies');
     return data.json();
 }
 
-function getSessions() {
-  return fetch('http://localhost:3000/sessions')
-    .then(data => data.json())
-    .then(posts => console.log(posts))
+async function getSessions() {
+  var data = await fetch('http://localhost:3000/sessions');
+    return data.json();
 }
 
 function newMovie() {
@@ -20,6 +18,7 @@ function newMovie() {
     runtime: document.getElementById("runtime").value,
     rated: $('#rated').val(),
     tickets_count: 0,
+    playing: true,
     poster_image: document.getElementById("poster_link").value,
     trailer: document.getElementById("trailer_link").value,
     banner: document.getElementById("banner_link").value
@@ -38,10 +37,21 @@ function newMovie() {
 
 }
 
-function newSession() {
-
+async function newSession() {
+  var movieName = document.getElementById("movie_selected").value;
+  var movies = await getMovies();  
+  var id = 0;
+  console.log(movies);
+  for(var i in movies){
+    if(movieName === movies[i].name){
+      name=movies[i].id;
+      break;
+    }
+  }
+  id = parseInt(name,10);
+  
   var session = {
-    movie_id: null,
+    movie_id: name,
     date: document.getElementById("date").value,
     time: document.getElementById("time").value,
     auditorium: $('#auditorium').val(),
@@ -251,6 +261,27 @@ function newSession() {
     ]
   }
   
+  switch(session.image_type){
+    case "IMAX 3D":
+    session.ticket_price="40.00"
+    break;
+
+    case "IMAX 2D":
+    session.ticket_price="35.00"
+    break;
+
+    case "3D":
+    session.ticket_price="30.00"
+    break;
+
+    case "2D":
+    session.ticket_price="25.00"
+    break;
+  }
+
+  if(session.movie_id == 0){
+    return 0;
+  }
   var options = {
     method: 'POST',
     body: JSON.stringify(session),
