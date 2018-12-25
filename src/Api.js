@@ -37,6 +37,22 @@ function newMovie() {
 
 }
 
+function timeConvertor(time) {
+  var PM = time.match('PM') ? true : false
+  
+  time = time.split(':')
+  var min = time[1]
+  if (PM) {
+      var hour = 12 + parseInt(time[0],10)
+      var sec = time[2].replace('PM', '')
+  } else {
+      var hour = time[0]
+      var sec = time[2].replace('AM', '')       
+  }
+  return (hour+":"+min+":"+sec);
+  //console.log(hour + ':' + min + ':' + sec)
+}
+
 async function newSession() {
   var movieName = document.getElementById("movie_selected").value;
   var movies = await getMovies();  
@@ -49,11 +65,15 @@ async function newSession() {
     }
   }
   id = parseInt(name,10);
-  
+  var timeFormated = document.getElementById("time").value;
+  //09:30 PM
+  //07:03:15PM
+  timeFormated = timeFormated.replace(" ",":00");
+  var timeConverted = timeConvertor(timeFormated);
   var session = {
     movie_id: name,
     date: document.getElementById("date").value,
-    time: document.getElementById("time").value,
+    time: timeConverted,
     auditorium: $('#auditorium').val(),
     image_type: $('#image_type').val(),
     ticket_price: null,

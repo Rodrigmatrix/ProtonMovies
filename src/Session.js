@@ -95,9 +95,9 @@ function timeConvertor(time) {
         var hour = time[0]
         var sec = time[2].replace('AM', '')       
     }
-    
-    console.log(hour + ':' + min + ':' + sec)
-}
+    return (hour+":"+min+":"+sec);
+    //console.log(hour + ':' + min + ':' + sec)
+  }
 
 function convertMonth(session){
     var month = session.split(" ");
@@ -159,23 +159,99 @@ async function displaySessions(){
 
     for(var i in sessions){
         var mth = convertMonth(sessions[i].date);
-        console.log("atual " + mthActual);
-        if(sessions[i].movie_id == id && (mth == mthActual)){
+        var date = sessions[i].date;
+        //console.log("atual "+ date);
+        var splited = date.split(" ");
+        //console.log("se "+ splited);
+        var day = date[4]+date[5];
+        var year = date[8]+date[9]+date[10]+date[11];
+
+        var time = sessions[i].time.split(":");
+        var hour = time[0];
+        var minutes = time[1];
+        //console.log("cond dia "+ day);
+        //console.log("cond mes "+ mth);
+        //console.log("cond ano "+ year);
+
+        if((sessions[i].movie_id == id) && (mth == mthActual) && (day == dayActual) && (year == yearActual) && (hour >= hourActual) || (minutes<minutesActual && hour==hourActual)){
             document.getElementById("tableSessions").innerHTML+=( `
             <tr>
                 <td>${movies[id-1].name}</td>
                 <td>${sessions[i].auditorium}</td>
                 <td>${sessions[i].image_type}</td>
                 <td>
-                <a href="file:///Users/rodrigogomes/Documents/Codes/ProtonMovies/src/Seats/pickSeat.html?sessionid=${sessions[i].id}" class="blue left waves-effect waves-light btn ">${sessions[i].time}</a>
+                <a href="file:///Users/rodrigogomes/Documents/Codes/ProtonMovies/src/Seats/pickSeat.html?sessionid=${sessions[i].id}" class="blue left waves-effect waves-light btn ">${hour+":"+minutes}</a>
                 </td>
             </tr>
             `);
         }
     }
 }
+async function setPagination(){
+    var month = await getMonth();
+    mouth = parseInt(month, 10);
+    var day = await getDay();
+    day = parseInt(day, 10);
+        document.getElementById("playingDates").innerHTML+=( `
+            <li class="active blue"><a onclick="displaySessionsByDate(${day})">Hoje</a></li>
+            <li class="waves-effect"><a onclick="displaySessionsByDate(${day+1})">${day+1 +" Dec"}</a></li>
+            <li class="waves-effect"><a onclick="displaySessionsByDate(${day+2})">${day+2 +" Dec"}</a></li>
+            <li class="waves-effect"><a onclick="displaySessionsByDate(${day+3})">${day+3 +" Dec"}</a></li>
+            <li class="waves-effect"><a onclick="displaySessionsByDate(${day+4})">${day+4 +" Dec"}</a></li>
+        `);
 
 
+}
+
+async function displaySessionsByDate(daySession){
+    
+    var url = window.location.href;
+    var arr = url.split("movieid=");
+    //console.log(arr);
+    var id = parseInt(arr[1], 10);
+    //console.log(id);
+    var movies = await getMovies();
+    //console.log(movies);
+    var sessions = await getSessions();
+
+    var mthActual = await getMonth();
+    var dayActual = await getDay();
+    dayActual = parseInt(dayActual, 10);
+    var yearActual = await getYear();
+
+    var hourActual = await getHour();
+    var minutesActual = await getMinutes();
+
+    for(var i in sessions){
+        var mth = convertMonth(sessions[i].date);
+        var date = sessions[i].date;
+        //console.log("atual "+ date);
+        var splited = date.split(" ");
+        //console.log("se "+ splited);
+        var day = daySession;
+        var year = date[8]+date[9]+date[10]+date[11];
+
+        var time = sessions[i].time.split(":");
+        var hour = time[0];
+        var minutes = time[1];
+        //console.log("cond dia "+ day);
+        //console.log("cond mes "+ mth);
+        //console.log("cond ano "+ year);
+        if((sessions[i].movie_id == id) && (mth == mthActual) && (day == dayActual+1) && (year == yearActual) && (hour >= hourActual) || (minutes<minutesActual && hour==hourActual)){
+            console.log("daiwduiawduiawd");
+            document.getElementById("tableSessions").innerHTML+=( `
+            <tr>
+                <td>${movies[id-1].name}</td>
+                <td>${sessions[i].auditorium}</td>
+                <td>${sessions[i].image_type}</td>
+                <td>
+                <a href="file:///Users/rodrigogomes/Documents/Codes/ProtonMovies/src/Seats/pickSeat.html?sessionid=${sessions[i].id}" class="blue left waves-effect waves-light btn ">${hour+":"+minutes}</a>
+                </td>
+            </tr>
+            `);
+        }
+    }
+}
 
 async function displaySessionsInfo(){
     var url = window.location.href;

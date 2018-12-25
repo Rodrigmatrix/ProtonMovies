@@ -73,13 +73,7 @@
     
     <div class="container"> 
         <ul id="playingDates" class="pagination ">
-            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-            <li class="active blue"><a href="#!">Hoje</a></li>
-            <li class="waves-effect"><a href="#!">26 Dec</a></li>
-            <li class="waves-effect"><a href="#!">3</a></li>
-            <li class="waves-effect"><a href="#!">4</a></li>
-            <li class="waves-effect"><a href="#!">5</a></li>
-            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+           
           </ul>
     <table class="striped">
         <thead>
@@ -129,6 +123,7 @@ $(document).ready(function(){
 })
 displaySessionsInfo();
 displaySessions();
+setPagination();
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.slider');
     var instances = M.Slider.init(elems, options);
