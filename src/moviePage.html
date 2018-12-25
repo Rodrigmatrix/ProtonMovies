@@ -72,9 +72,9 @@
     <div class="card-panel blue z-depth-5 center bold">Horários</div>
     
     <div class="container"> 
-        <ul class="pagination">
+        <ul id="playingDates" class="pagination ">
             <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-            <li class="active"><a href="#!">Hoje</a></li>
+            <li class="active blue"><a href="#!">Hoje</a></li>
             <li class="waves-effect"><a href="#!">26 Dec</a></li>
             <li class="waves-effect"><a href="#!">3</a></li>
             <li class="waves-effect"><a href="#!">4</a></li>
@@ -129,7 +129,6 @@ $(document).ready(function(){
 })
 displaySessionsInfo();
 displaySessions();
-accessDateTime();
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.slider');
     var instances = M.Slider.init(elems, options);
