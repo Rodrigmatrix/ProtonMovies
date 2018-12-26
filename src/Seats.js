@@ -62,14 +62,67 @@ function showSessionInfo(session,movie){
 
     `);
 }
+
+function convertSeat(seat){
+    seat = seat.toString();
+    seat = seat.split("");
+    console.log("assento "+seat);
+    var size = seat.lenght;
+    if(size == 1){
+        return "A"+seat[0];
+    }
+    else if(seat[1] == 0){
+        switch(seat[0]){
+            case "1":
+            return "A 10";
+
+            case "2":
+            return "C 20";
+
+            case "3":
+            return "D 30";
+
+            case "4":
+            return "E 40";
+
+            case "5":
+            return "E 50";
+
+            case "6":
+            return "F 60"
+
+        }
+    }
+    else{
+        switch(seat[0]){
+            case "1":
+            return "B "+seat[1];
+
+            case "2":
+            return "C "+seat[0]+seat[1];
+
+            case "3":
+            return "D "+seat[0]+seat[1];
+
+            case "4":
+            return "E "+seat[0]+seat[1];
+
+            case "5":
+            return "F "+seat[0]+seat[1];
+
+        }
+    }
+}
+
 function printSelected(seat){
     console.log(selectedArray);
+    var converted = convertSeat(seat);
         document.getElementById("noneSelected").innerHTML=( `
        
         `);
         document.getElementById("selectedSeats").innerHTML+=( `
         <div id="${"array"+seat}">
-        <h6 class="center" >${selectedArray[seat]}</h6>
+        <h6 class="center" >${converted}</h6>
         </div>       
         `);
 }
