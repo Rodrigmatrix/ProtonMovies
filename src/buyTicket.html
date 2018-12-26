@@ -1,114 +1,255 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Proton Movies</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/materialize.css" />
-    <!--script src="firebase.js"></script-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proton Movies</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="css/materialize.css" />
+  <!--script src="firebase.js"></script-->
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+
 </head>
 <style>
-    .card {
-        width:300px;
-    }
+  .card {
+    width: 300px;
+  }
 </style>
-    <!-- Banner -->
-    <nav class="blue z-depth-4" style="padding:0px 10px;">
-        <div class="nav-wrapper">  
-            <a href="#" class="sidenav-trigger" data-target="desktop">
-                <i class="material-icons">menu</i>
-            </a>
-            <div class="container">
-                
-            <a href="index.html" class="brand-logo center">Proton Movies</a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="playing.html">Todas as Sessões</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="about.html">Sobre</a></li>
-            </ul>
-             <ul id="navbar" class="right"></ul>
-            </div> 
-            <ul class="sidenav" id="desktop">
-                <li><a href="playing.html">Todas as Sessões</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="about.html">Sobre</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="slider">
-        <ul class="slides">
-          <li>
-            <img src="https://bransonimax.com/wp-content/uploads/2017/04/IMAXNewTheater.jpg"> <!-- random image -->
-            <div class="caption center-align">
-              <h3>Cinema Proton Movies</h3>
-              <h5 class="light grey-text text-lighten-3">Compre seu ingresso agora mesmo</h5>
+<style>
+  .center-seats {
+    width: 80%;
+    position: right;
+}
+</style>
+<!-- Banner -->
+<nav class="blue z-depth-4" style="padding:0px 10px;">
+  <div class="nav-wrapper">
+    <a href="#" class="sidenav-trigger" data-target="desktop">
+      <i class="material-icons">menu</i>
+    </a>
+    <div class="container">
+
+      <a href="index.html" class="brand-logo center">Proton Movies</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="playing.html">Todas as Sessões</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="about.html">Sobre</a></li>
+      </ul>
+      <ul id="navbar" class="right"></ul>
+    </div>
+    <ul class="sidenav" id="desktop">
+      <li><a href="playing.html">Todas as Sessões</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="about.html">Sobre</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="slider">
+  <ul class="slides">
+    <li>
+      <img src="https://bransonimax.com/wp-content/uploads/2017/04/IMAXNewTheater.jpg"> <!-- random image -->
+      <div class="caption center-align">
+        <h3>Cinema Proton Movies</h3>
+        <h5 class="light grey-text text-lighten-3">Compre seu ingresso agora mesmo</h5>
+      </div>
+    </li>
+    <li>
+      <img src="https://images4.alphacoders.com/909/thumb-1920-909185.jpg">
+      <div class="caption bottom">
+        <h3>Vingadores Guerra Infinita</h3>
+        <h5 class="light grey-text text-lighten-3">Mais Vendidos</h5>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<body>
+  <div class="row">
+    <div class="col s4">
+      <div class="card-panel blue z-depth-5 center bold">Detalhes</div>
+    </div>
+
+    <div class="col s8">
+      <div class="card-panel blue z-depth-5 center bold">Escolher Poltrona</div>
+    </div>
+  </div>
+  
+  <div class="row">
+
+    <div id="sessionInfo" class="card-panel center white z-depth-5 col s6" style="height: 472px; width: 600px; border-top:0; border-left:0;"></div>
+    <div class="col s7">
+
+        <!-- Pick Seat-->
+        <center-seats>
+            <div class="row right">
+                <div class="col s1"><h5>A</h5></div>
+                <div class="col s1" ><img id="1" onclick="selectSeat(1)" src="free.png"></div>
+                <div class="col s1"><img id="2" onclick="selectSeat(2)" src="free.png"></div>
+                <div class="col s1"><img id="3" onclick="selectSeat(3)" src="free.png"></div>
+                <div class="col s1"><img id="4" onclick="selectSeat(4)" src="free.png"></div>
+                <div class="col s1"><img id="5" onclick="selectSeat(5)" src="free.png"></div>
+                <div class="col s1"><img id="6" onclick="selectSeat(6)" src="free.png"></div>
+                <div class="col s1"><img id="7" onclick="selectSeat(7)" src="free.png"></div>
+                <div class="col s1"><img id="8" onclick="selectSeat(8)" src="free.png"></div>
+                <div class="col s1"><img id="9" onclick="selectSeat(9)" src="free.png"></div>
+                <div class="col s1"><img id="10" onclick="selectSeat(10)" src="free.png"></div>
             </div>
-          </li>
-          <li>
-            <img src="https://images4.alphacoders.com/909/thumb-1920-909185.jpg"> 
-            <div class="caption bottom">
-              <h3>Vingadores Guerra Infinita</h3>
-              <h5 class="light grey-text text-lighten-3">Mais Vendidos</h5>
+            <div class="row right">
+                <div class="col s1"><h5>B</h5></div>
+                <div class="col s1" ><img id="11" onclick="selectSeat(11)" src="free.png"></div>
+                <div class="col s1"><img id="12" onclick="selectSeat(12)" src="free.png"></div>
+                <div class="col s1"><img id="13" onclick="selectSeat(13)" src="free.png"></div>
+                <div class="col s1"><img id="14" onclick="selectSeat(14)" src="free.png"></div>
+                <div class="col s1"><img id="15" onclick="selectSeat(15)" src="free.png"></div>
+                <div class="col s1"><img id="16" onclick="selectSeat(16)" src="free.png"></div>
+                <div class="col s1"><img id="17" onclick="selectSeat(17)" src="free.png"></div>
+                <div class="col s1"><img id="18" onclick="selectSeat(18)" src="free.png"></div>
+                <div class="col s1"><img id="19" onclick="selectSeat(19)" src="free.png"></div>
+                <div class="col s1"><img id="20" onclick="selectSeat(20)" src="free.png"></div>
             </div>
-          </li>
+            <div class="row right">
+                <div class="col s1"><h5>C</h5></div>
+                <div class="col s1" ><img id="21" onclick="selectSeat(21)" src="free.png"></div>
+                <div class="col s1"><img id="22" onclick="selectSeat(22)" src="free.png"></div>
+                <div class="col s1"><img id="23" onclick="selectSeat(23)" src="free.png"></div>
+                <div class="col s1"><img id="24" onclick="selectSeat(24)" src="free.png"></div>
+                <div class="col s1"><img id="25" onclick="selectSeat(25)" src="free.png"></div>
+                <div class="col s1"><img id="26" onclick="selectSeat(26)" src="free.png"></div>
+                <div class="col s1"><img id="27" onclick="selectSeat(27)" src="free.png"></div>
+                <div class="col s1"><img id="28" onclick="selectSeat(28)" src="free.png"></div>
+                <div class="col s1"><img id="29" onclick="selectSeat(29)" src="free.png"></div>
+                <div class="col s1"><img id="30" onclick="selectSeat(30)" src="free.png"></div>
+            </div>
+            <div class="row right">
+                <div class="col s1"><h5>D</h5></div>
+                <div class="col s1" ><img id="31" onclick="selectSeat(31)" src="free.png"></div>
+                <div class="col s1"><img id="32" onclick="selectSeat(32)" src="free.png"></div>
+                <div class="col s1"><img id="33" onclick="selectSeat(33)" src="free.png"></div>
+                <div class="col s1"><img id="34" onclick="selectSeat(34)" src="free.png"></div>
+                <div class="col s1"><img id="35" onclick="selectSeat(35)" src="free.png"></div>
+                <div class="col s1"><img id="36" onclick="selectSeat(36)" src="free.png"></div>
+                <div class="col s1"><img id="37" onclick="selectSeat(37)" src="free.png"></div>
+                <div class="col s1"><img id="38" onclick="selectSeat(38)" src="free.png"></div>
+                <div class="col s1"><img id="39" onclick="selectSeat(39)" src="free.png"></div>
+                <div class="col s1"><img id="40" onclick="selectSeat(40)" src="free.png"></div>
+            </div>
+            <div class="row right">
+                <div class="col s1"><h5>E</h5></div>
+                <div class="col s1" ><img id="41" onclick="selectSeat(41)" src="free.png"></div>
+                <div class="col s1"><img id="42" onclick="selectSeat(42)" src="free.png"></div>
+                <div class="col s1"><img id="43" onclick="selectSeat(43)" src="free.png"></div>
+                <div class="col s1"><img id="44" onclick="selectSeat(44)" src="free.png"></div>
+                <div class="col s1"><img id="45" onclick="selectSeat(45)" src="free.png"></div>
+                <div class="col s1"><img id="46" onclick="selectSeat(46)" src="free.png"></div>
+                <div class="col s1"><img id="47" onclick="selectSeat(47)" src="free.png"></div>
+                <div class="col s1"><img id="48" onclick="selectSeat(48)" src="free.png"></div>
+                <div class="col s1"><img id="49" onclick="selectSeat(49)" src="free.png"></div>
+                <div class="col s1"><img id="50" onclick="selectSeat(50)" src="free.png"></div>
+            </div>
+            <div class="row right">
+                <div class="col s1"><h5>F</h5></div>
+                <div class="col s1" ><img id="51" onclick="selectSeat(51)" src="free.png"></div>
+                <div class="col s1"><img id="52" onclick="selectSeat(52)" src="free.png"></div>
+                <div class="col s1"><img id="53" onclick="selectSeat(53)" src="free.png"></div>
+                <div class="col s1"><img id="54" onclick="selectSeat(54)" src="free.png"></div>
+                <div class="col s1"><img id="55" onclick="selectSeat(55)" src="free.png"></div>
+                <div class="col s1"><img id="56" onclick="selectSeat(56)" src="free.png"></div>
+                <div class="col s1"><img id="57" onclick="selectSeat(57)" src="free.png"></div>
+                <div class="col s1"><img id="58" onclick="selectSeat(58)" src="free.png"></div>
+                <div class="col s1"><img id="59" onclick="selectSeat(59)" src="free.png"></div>
+                <div class="col s1"><img id="60" onclick="selectSeat(60)" src="free.png"></div>
+            </div>
+            <a class="blue waves-effect waves-light right btn"  id="btn" onclick="selectTicketsPrice()">Tipo de Ingresso</a>
+        </center-seats>
+
+    </div>
+  </div>
+  
+
+  
+</body>
+
+
+<footer class="blue page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Cinema Proton Movies</h5>
+        <p class="grey-text text-lighten-4">Todos os direitos reservados.</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Links</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="about.html">Sobre</a></li>
+          <li><a class="grey-text text-lighten-3" href="https://github.com/Rodrigmatrix/ProtonMovies">Github</a></li>
         </ul>
       </div>
-    <div class="card-panel blue z-depth-5 center bold">Detalhes</div>
-    <div class="center">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/QwievZ1Tx-8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    <!--img width="360" height="315" src="assets/infinitywar.jpg"-->
     </div>
-    
-    <div class="card-panel blue z-depth-5 center bold">Escolher Poltrona</div>
-    <div w3-include-html="Assentos/escolherassento.html"></div>
-</body>
-<footer class="blue page-footer">
+  </div>
+  <div class="footer-copyright">
     <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Cinema Proton Movies</h5>
-          <p class="grey-text text-lighten-4">Todos os direitos reservados.</p>
-        </div>
-        <div class="col l4 offset-l2 s12">
-          <h5 class="white-text">Links</h5>
-          <ul>
-            <li><a class="grey-text text-lighten-3" href="about.html">Sobre</a></li>
-            <li><a class="grey-text text-lighten-3" href="https://github.com/Rodrigmatrix/ProtonMovies">Github</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
       © 2018 Proton Apps
-      </div>
     </div>
-  </footer>
-<script>
-$(document).ready(function(){
-    $('.sidenav').sidenav();
-})
+  </div>
+</footer>
+<script src="Api.js"></script>
+<script src="Seats.js"></script>
 
-document.addEventListener('DOMContentLoaded', function() {
+<script>
+  $(document).ready(function () {
+    $('.sidenav').sidenav();
+  });
+  
+  document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.slider');
     var instances = M.Slider.init(elems, options);
   });
+  getSessions().then(async function(response){
+    var url = window.location.href;
+    var arr = url.split("sessionid=");
+    var id = parseInt(arr[1],10);
+    var session;
+    for(var i in response){
+      if(id == response[i].id){
+        session=response[i];
+      }
+    }
+    var movies = await getMovies();
+    for(var i in movies){
+      if(session.movie_id == movies[i].id){
+        showSessionInfo(session,movies[i]);
+      }
+    }
 
+    
+  });
+  getSessions().then(async function (response){
+        var url = window.location.href;
+        var arr = url.split("sessionid=");
+        var id = parseInt(arr[1], 10);
+        //console.log(id);
+        var sessions = await getSessions();
+        for(var i in sessions){
+            if(sessions[i].id == id){
+                setSeats(sessions[i]);
+            }
+        }
+    });
+  
   // Or with jQuery
 
-  $(document).ready(function(){
+  $(document).ready(function () {
     $('.slider').slider();
   });
 </script>
+
 </html>
