@@ -1,14 +1,20 @@
+var selectedArray = new Array();
+var size=0;
 function setSeats(session){
-    console.log(session);
-    for(var i=0;i<=50;i++){
-        if((session.seats[i].client_id) == null){
+    //console.log(session);
+    console.log("teste "+session.seats[0].client_id);
+    for(var i=0;i<=49;i++){
+        var value = session.seats[i].client_id;
+        if(value == null){
             document.getElementById(i+1).src = "free.png";
+            selectedArray[i+1]=null;
         }
         else{
             document.getElementById(i+1).src = "taken.png";
+            selectedArray[i+1]=-1;
         }
     }
-    
+    console.log("array "+selectedArray);
 }
 
 function rated(movie_rated){
@@ -56,7 +62,40 @@ function showSessionInfo(session,movie){
 
     `);
 }
+function printSelected(seat){
+    console.log(selectedArray);
+        document.getElementById("noneSelected").innerHTML=( `
+       
+        `);
+        document.getElementById("selectedSeats").innerHTML+=( `
+        <div id="${"array"+seat}">
+        <h6 class="center" >${selectedArray[seat]}</h6>
+        </div>       
+        `);
+}
 
+function setButton(){
+    if(size != 0){
+        document.getElementById("btnTicket").innerHTML=( `
+            <a class="blue waves-effect waves-light right btn"  onclick="selectTicketsPrice()">Tipo de Ingresso</a>    
+        `);
+        
+        
+    }
+    else{
+        document.getElementById("btnTicket").innerHTML=( `
+            <a class="blue waves-effect waves-light right btn disabled"  onclick="selectTicketsPrice()">Tipo de Ingresso</a>    
+        `);
+        document.getElementById("noneSelected").innerHTML=( `
+            <h6 class="center">Nenhum</h6>
+        `);
+    }
+}
+
+function removeSelected(seat){
+    console.log(selectedArray);
+    $("#array"+seat).remove();
+}
 
 function selectSeat(seat){
     // //localStorage.setItem("lastname", "Smith");
@@ -66,9 +105,16 @@ function selectSeat(seat){
     image = image[9];
     if(image == "selected.png"){
         document.getElementById(seat).src = "free.png";
+        selectedArray[seat]=null;
+        removeSelected(seat);
+        size--;
+        setButton();
     }
     if(image == "free.png"){
-
         document.getElementById(seat).src = "selected.png";
+        selectedArray[seat]=seat;
+        printSelected(seat);
+        size++;
+        setButton();
     }
 }
