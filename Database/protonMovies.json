@@ -96,7 +96,7 @@
       "seats": [
         {
           "seat": 1,
-          "client_id": null
+          "client_id": "opa"
         },
         {
           "seat": 2,
@@ -236,7 +236,7 @@
         },
         {
           "seat": 36,
-          "client_id": null
+          "client_id": "null"
         },
         {
           "seat": 37,
