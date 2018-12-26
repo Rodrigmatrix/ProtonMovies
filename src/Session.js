@@ -252,7 +252,28 @@ async function displaySessionsByDate(daySession){
         }
     }
 }
+function rated(movie_rated){
+    switch(movie_rated){
+        case "Livre":
+        return "https://www.jota.info/wp-content/uploads/2015/11/2000px-DJCTQ_-_L.svg_-1024x1024.png?x48657";
 
+        case "10 Anos":
+        return "https://blogjatefalei.files.wordpress.com/2014/09/classificacao_10anos.png";
+
+        case "12 Anos":
+        return "https://upload.wikimedia.org/wikipedia/commons/2/2e/DJCTQ_-_12.JPG";
+
+        case "14 Anos":
+        return "https://blogjatefalei.files.wordpress.com/2014/09/classificacao_14anos.png";
+
+        case "16 Anos":
+        return "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/DJCTQ_-_16.svg/400px-DJCTQ_-_16.svg.png";
+
+        case "18 Anos":
+        return "https://i1.wp.com/upload.wikimedia.org/wikipedia/commons/thumb/c/cc/DJCTQ_-_18.JPG/300px-DJCTQ_-_18.JPG";
+
+    }
+}
 async function displaySessionsInfo(){
     var url = window.location.href;
     var arr = url.split("movieid=");
@@ -266,9 +287,28 @@ async function displaySessionsInfo(){
             document.getElementById("pageName").innerHTML=( `
                 ${movies[i].name + " - Sessões"}
             `);
+            
+             document.getElementById("infoCard").innerHTML=( `
+            <div class="row">
+            <div class="col s6" style="height: 415px; border-top:0; border-left:0; ">
+              <img src="${movies[i].poster_image}" class="" style="height: 415px; width: 270px; border-left:0; border: none; border-spacing: 0px; ">
+            </div>
+      
+            <div class="col-content s4">
+              <p class=" center flow-text">${movies[i].name}</p>
+              <p align="justify"><label for="">Descrição: </label>${movies[i].description}</p>
+              <p><label for="">Duração: </label>${movies[i].runtime +" min"}</p>
+              <p><label for="">Ano: </label>${movies[i].release_date}</p>
+              <img src="${rated(movies[i].rated)}" class="left"
+                style="height: 30px; width: 30px;">
+            </div>
+          </div>
+            `);
+
             document.getElementById("trailer").innerHTML=( `
-            <iframe width="560" height="315" src="${movies[i].trailer}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                <!--img width="360" height="315" src="${movies[i].poster}"-->
+            
+            <iframe width="615" height="375" src="${movies[i].trailer}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <!--img width="400" height="450" src="${movies[i].poster}"-->
             </div>
             `);
         }
