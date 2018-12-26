@@ -156,8 +156,9 @@ async function displaySessions(){
 
     var hourActual = await getHour();
     var minutesActual = await getMinutes();
-
+    var none=true;
     for(var i in sessions){
+
         var mth = convertMonth(sessions[i].date);
         var date = sessions[i].date;
         //console.log("atual "+ date);
@@ -174,7 +175,18 @@ async function displaySessions(){
         //console.log("cond ano "+ year);
 
         if((sessions[i].movie_id == id) && (mth == mthActual) && (day == dayActual) && (year == yearActual) && (hour >= hourActual) || (minutes<minutesActual && hour==hourActual)){
+            none=false;
             document.getElementById("tableSessions").innerHTML+=( `
+            <table class="center striped">
+      <thead>
+        <tr class="center">
+          <th>Filme</th>
+          <th>Sala</th>
+          <th></th>
+          <th>Horários</th>
+        </tr>
+      </thead>
+            <tbody class="center" id="tableSessions">
             <tr>
                 <td>${movies[id-1].name}</td>
                 <td>${sessions[i].auditorium}</td>
@@ -183,8 +195,20 @@ async function displaySessions(){
                 <a href="file:///Users/rodrigogomes/Documents/Codes/ProtonMovies/src/Seats/pickSeat.html?sessionid=${sessions[i].id}" class="blue left waves-effect waves-light btn ">${hour+":"+minutes}</a>
                 </td>
             </tr>
+            </tbody>
+            </table>
             `);
         }
+    }
+    if(none!=false){
+        document.getElementById("content_sessions").innerHTML=(`
+        <div class="row center">
+            <h3>Nenhuma Sessão encontrada para esse filme</h3>
+        </div>
+      `);
+    }
+    else{
+        setPagination();
     }
 }
 async function setPagination(){
@@ -199,8 +223,6 @@ async function setPagination(){
             <li class="waves-effect"><a onclick="displaySessionsByDate(${day+3})">${day+3 +" Dec"}</a></li>
             <li class="waves-effect"><a onclick="displaySessionsByDate(${day+4})">${day+4 +" Dec"}</a></li>
         `);
-
-
 }
 
 async function displaySessionsByDate(daySession){
@@ -238,7 +260,6 @@ async function displaySessionsByDate(daySession){
         //console.log("cond mes "+ mth);
         //console.log("cond ano "+ year);
         if((sessions[i].movie_id == id) && (mth == mthActual) && (day == dayActual+1) && (year == yearActual) && (hour >= hourActual) || (minutes<minutesActual && hour==hourActual)){
-            console.log("daiwduiawduiawd");
             document.getElementById("tableSessions").innerHTML+=( `
             <tr>
                 <td>${movies[id-1].name}</td>
@@ -252,6 +273,7 @@ async function displaySessionsByDate(daySession){
         }
     }
 }
+
 function rated(movie_rated){
     switch(movie_rated){
         case "Livre":
@@ -274,6 +296,7 @@ function rated(movie_rated){
 
     }
 }
+
 async function displaySessionsInfo(){
     var url = window.location.href;
     var arr = url.split("movieid=");

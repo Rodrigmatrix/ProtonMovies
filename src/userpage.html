@@ -31,14 +31,14 @@
                 
             <a href="index.html" class="brand-logo center">Proton Movies</a>
             <ul class="right hide-on-med-and-down">
-                    <li><a href="sessoes.html">Todas as Sessões</a></li>
+                    <li><a href="playing.html">Todas as Sessões</a></li>
                     <li><a href="login.html">Login</a></li>
                     <li><a href="about.html">Sobre</a></li>
             </ul>
              <ul id="navbar" class="right"></ul>
             </div> 
             <ul class="sidenav" id="desktop">
-                    <li><a href="sessoes.html">Todas as Sessões</a></li>
+                    <li><a href="playing.html">Todas as Sessões</a></li>
                     <li><a href="login.html">Login</a></li>
                     <li><a href="about.html">Sobre</a></li>
             </ul>
@@ -47,14 +47,14 @@
     <div class="slider">
         <ul class="slides">
           <li>
-            <img src="https://media-assets-02.thedrum.com/cache/images/thedrum-prod/s3-news-tmp-136742-imaxnewtheater--2x1--940.jpg"> <!-- random image -->
+            <img src="https://bransonimax.com/wp-content/uploads/2017/04/IMAXNewTheater.jpg"> <!-- random image -->
             <div class="caption center-align">
               <h3>Cinema Proton Movies</h3>
               <h5 class="light grey-text text-lighten-3">Compre seu ingresso agora mesmo</h5>
             </div>
           </li>
           <li>
-            <img src="https://images4.alphacoders.com/909/thumb-1920-909185.jpg"> 
+            <img src="https://images4.alphacoders.com/909/thumb-1920-909185.jpg">
             <div class="caption bottom">
               <h3>Vingadores Guerra Infinita</h3>
               <h5 class="light grey-text text-lighten-3">Mais Vendidos</h5>
@@ -63,10 +63,10 @@
         </ul>
       </div>
     <div class="card-panel blue z-depth-5 center bold">Página de usuário</div>
-    <h4 class="center">Meus Ingressos</h4>
+    <h4 class="center">Funções</h4>
     <div class="center">
-        <a href="passwordrecovery.html" class="blue waves-effect waves-light btn">Alterar Senha</a>
-        <a onclick="logout()" class="blue waves-effect waves-light btn">Sair</a>
+        <a href="newMovie.html" class="blue waves-effect waves-light btn">Cadastrar Filme</a>
+        <a href="newSession.html" class="blue waves-effect waves-light btn">Cadastrar Sessão</a>
     </div>
     &emsp;
     
@@ -94,18 +94,18 @@
     </div>
   </footer>
 <script>
-$(document).ready(function(){
+ $(document).ready(function () {
     $('.sidenav').sidenav();
-})
+  })
 
-document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.slider');
     var instances = M.Slider.init(elems, options);
   });
 
   // Or with jQuery
 
-  $(document).ready(function(){
+  $(document).ready(function () {
     $('.slider').slider();
   });
 </script>

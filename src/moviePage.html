@@ -34,14 +34,14 @@
 
       <a href="index.html" class="brand-logo center">Proton Movies</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="sessoes.html">Todas as Sessões</a></li>
+        <li><a href="playing.html">Todas as Sessões</a></li>
         <li><a href="login.html">Login</a></li>
         <li><a href="about.html">Sobre</a></li>
       </ul>
       <ul id="navbar" class="right"></ul>
     </div>
     <ul class="sidenav" id="desktop">
-      <li><a href="sessoes.html">Todas as Sessões</a></li>
+      <li><a href="playing.html">Todas as Sessões</a></li>
       <li><a href="login.html">Login</a></li>
       <li><a href="about.html">Sobre</a></li>
     </ul>
@@ -88,28 +88,21 @@
 
 <div class="card-panel blue z-depth-5 center bold">Horários</div>
 
-<div class="row center container">
-
+<div id="content_sessions" class="row center container">
+  
   <ul id="playingDates" class="pagination ">
-
+      <div class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
   </ul>
-  <div class="row center container">
-
-    <table class="center striped">
-      <thead>
-        <tr class="center">
-          <th>Filme</th>
-          <th>Sala</th>
-          <th></th>
-          <th>Horários</th>
-        </tr>
-      </thead>
-
-      <tbody class="center" id="tableSessions">
-
-      </tbody>
-    </table>
-  </div>
+  <div id="tableSessions" class="row center container"></div>
 
 </div>
 </body>
@@ -145,7 +138,7 @@
   })
   displaySessionsInfo();
   displaySessions();
-  setPagination();
+  
   document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.slider');
     var instances = M.Slider.init(elems, options);

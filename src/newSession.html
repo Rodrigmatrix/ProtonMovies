@@ -32,7 +32,7 @@
         </a>
         <div class="container">
 
-            <a href="" class="brand-logo center">Proton Movies</a>
+            <a href="index.html" class="brand-logo center">Proton Movies</a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="sessoes.html">Todas as Sessões</a></li>
                 <li><a href="login.html">Login</a></li>
@@ -66,45 +66,59 @@
 <div class="card-panel blue center bold z-depth-5">Nova Sessão</div>
 
 <body>
-    <div class="row ">
-        <form class="col s5">
-
-            <div class="input-field col s12">
+    <div class="row container">
+        <div id="infoCard" class=" white z-depth-5 " style="height: 240px; position: relative; text-align: center; ">
+            <div class="center input-field col s12">
                 <i class="material-icons prefix">movie</i>
                 <input type="text" id="movie_selected" class="autocomplete">
                 <label for="movie_selected">Nome do Filme</label>
             </div>
-            <label for="lunchtime">Data da Sessão</label>
-            <input type="text" id="date" class="datepicker">
-            <label for="lunchtime">Horário da Sessão</label>
-            <input type="text" id="time" class="timepicker">     
-
-            <div class="input-field col s5">
-                <select id="auditorium">
-                    <option value="Sala 1">Sala 1</option>
-                    <option value="Sala 1">Sala 2</option>
-                    <option value="Sala 1">Sala 3</option>
-                    <option value="Sala 1">Sala 4</option>
-                    <option value="Sala 1">Sala 5</option>
-                </select>
-                <label>Sala de exibição</label>
+            <div class="col s3">
+                <label>Data da Sessão</label>
+                <input type="text" id="date" class="datepicker">
             </div>
+            <div class="col s3">
+                <label>Horário da Sessão</label>
+                <input type="text" id="time" class="timepicker">
+            </div>
+            <div class="input-field col s2">
+                    <select id="auditorium">
+                        <option value="Sala 1">Sala 1</option>
+                        <option value="Sala 1">Sala 2</option>
+                        <option value="Sala 1">Sala 3</option>
+                        <option value="Sala 1">Sala 4</option>
+                        <option value="Sala 1">Sala 5</option>
+                    </select>
+                    <label>Sala de exibição</label>
+                </div>
 
-            <div class="input-field col s5">
+                <div class="input-field col s2">
                     <select id="image_type">
-                            <option value="IMAX 2D" data-icon="https://png.pngtree.com/svg/20151203/imax_971186.png">IMAX 2D</option>
-                            <option value="IMAX 3D" data-icon="https://png.pngtree.com/svg/20151203/imax_971186.png">IMAX 3D</option>
-                            <option value="2D">2D</option>
-                            <option value="3D">3D</option>
+                        <option value="IMAX 2D" data-icon="https://png.pngtree.com/svg/20151203/imax_971186.png">IMAX 2D</option>
+                        <option value="IMAX 3D" data-icon="https://png.pngtree.com/svg/20151203/imax_971186.png">IMAX 3D</option>
+                        <option value="2D">2D</option>
+                        <option value="3D">3D</option>
                     </select>
                     <label>Formato do Filme</label>
                 </div>
 
-        </form>
-        <a class="btn-floating btn-large right waves-effect waves-light red" onclick="newSession()"><i class="material-icons">add</i></a>
+                <div class="input-field col s2">
+                        <select id="image_type">
+                            <option value="1">1 Semana</option>
+                            <option value="2">2 Semanas</option>
+                            <option value="3">3 Semanas</option>
+                            <option value="4">1 Mês</option>
+                        </select>
+                        <label>Repetir por:</label>
+                </div>
+
+            <div class="col s12">
+                <a class="btn-floating btn-large right waves-effect waves-light blue" onclick="newSession()"><i class="material-icons">add</i></a>
+            </div>
+        </div>
     </div>
-    <script src="Api.js"></script>
-    <script src="Movies.js"></script>
+
+
 </body>
 
 <footer class="blue page-footer">
@@ -129,6 +143,8 @@
         </div>
     </div>
 </footer>
+<script src="Api.js"></script>
+<script src="Movies.js"></script>
 <script>
     $(document).ready(function () {
         $('.sidenav').sidenav();
@@ -165,7 +181,7 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         var elems = document.querySelectorAll('.datepicker');
-        
+
         var instances = M.Datepicker.init(elems, options);
     });
 
@@ -176,31 +192,31 @@
     });
 
     // Or with jQuery
-    getMovies().then(function(movies){
+    getMovies().then(function (movies) {
         var dataCountry = {};
-        for (var i=0;i<movies.length;i++){
-          //console.log(movies[i].name);
-          dataCountry[movies[i].name] = null;
+        for (var i = 0; i < movies.length; i++) {
+            //console.log(movies[i].name);
+            dataCountry[movies[i].name] = null;
         }
         $(document).ready(function () {
-        $('input.autocomplete').autocomplete({
-            data: dataCountry,
+            $('input.autocomplete').autocomplete({
+                data: dataCountry,
+            });
+            console.log(movies);
         });
-        console.log(movies);
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.timepicker');
+        var instances = M.Timepicker.init(elems, options);
     });
-    
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.timepicker');
-    var instances = M.Timepicker.init(elems, options);
-  });
 
-  // Or with jQuery
+    // Or with jQuery
 
-  $(document).ready(function(){
-    $('.timepicker').timepicker();
-  });
-        
+    $(document).ready(function () {
+        $('.timepicker').timepicker();
+    });
+
 </script>
 
 </html>
