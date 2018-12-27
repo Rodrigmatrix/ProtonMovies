@@ -325,7 +325,9 @@ async function displaySessionsInfo(){
               <img src="${rated(movies[i].rated)}" class="left"
                 style="height: 30px; width: 30px;">
             </div>
+            
           </div>
+          
             `);
 
             document.getElementById("trailer").innerHTML=( `

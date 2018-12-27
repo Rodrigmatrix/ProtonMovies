@@ -2,6 +2,8 @@ var selectedArray = new Array();
 var size=0;
 var lastSelectedPrice;
 var lastSelectedHalfPrice;
+var price;
+var totalPrice;
 function setSeats(session){
     //console.log(session);
     //console.log("teste "+session.seats[0].client_id);
@@ -120,6 +122,7 @@ function convertSeat(seat){
 
 function printSelected(seat){
     //console.log(selectedArray);
+    
     var converted = convertSeat(seat);
         document.getElementById("noneSelected").innerHTML=( `
        
@@ -131,7 +134,39 @@ function printSelected(seat){
         `);
 }
 
+function calculateTotalPrice(){
+    var fullPrice = parseInt(document.getElementById("price").value, 10);
+    var halfPrice = parseInt(document.getElementById("halfPrice").value, 10);
+    totalPrice = (fullPrice*price)+(halfPrice*(price/2));
+    return (fullPrice*price)+(halfPrice*(price/2));
+}
+
+function selectTicketsPrice(){
+    var fullPrice = parseInt(document.getElementById("price").value, 10);
+    var halfPrice = parseInt(document.getElementById("halfPrice").value, 10);
+    var arrayInfoCheckout = new Array();
+    var arraySeats = new Array();
+    var pickedSize = 0;
+    arrayInfoCheckout[0] = calculateTotalPrice();
+    var tickets_type = {
+        full: fullPrice,
+        half: halfPrice 
+    }
+    for(var i=1;i<=50;i++){
+        if(selectedArray[i] != null && selectedArray[i] != -1){
+            arraySeats[pickedSize]=i;
+            pickedSize++; 
+        }
+    }
+    arrayInfoCheckout[1] = arraySeats;
+    arrayInfoCheckout[2] = tickets_type;
+    localStorage.setItem("ticketsPrice", JSON.stringify(arrayInfoCheckout));
+    console.log(localStorage.getItem("ticketsPrice"));
+    window.open("checkout.html", "_self")
+}
+
 async function selectPrice(type){
+    
     // ta foda...
     var fullPrice = await parseInt(document.getElementById("price").value, 10);
     var halfPrice = await parseInt(document.getElementById("halfPrice").value, 10);
@@ -158,6 +193,11 @@ async function selectPrice(type){
             <a class="blue waves-effect waves-light right btn " onclick="selectTicketsPrice()">Proseguir para pagamento</a>
             `);
         }
+        calculateTotalPrice();
+        $("#total").html(`
+            <h5 class="header">Valor total R$: ${totalPrice}</h5>
+            `);
+
         for(var i=0;i<=qtd;i++){
             if(i == 0){
                 document.getElementById("halfPrice").innerHTML=( `
@@ -174,6 +214,7 @@ async function selectPrice(type){
         document.getElementById("halfPrice").value = lastSelectedHalfPrice;
     }
     else{
+        calculateTotalPrice();
         await console.log("full "+fullSelected);
         var qtd = size-halfPrice;
         //console.log("selecionado half "+halfPrice);
@@ -189,6 +230,10 @@ async function selectPrice(type){
             `);
 
         }
+        calculateTotalPrice();
+        $("#total").html(`
+            <h5 class="header">Valor total R$: ${totalPrice}</h5>
+            `);
         for(var i=0;i<=qtd;i++){
             //console.log("i");
 
@@ -206,7 +251,7 @@ async function selectPrice(type){
         document.getElementById("price").value = lastSelectedPrice;
      
     }
-
+    
     document.addEventListener('DOMContentLoaded', function () {
         var elems = document.querySelectorAll('select');
         var instances = M.FormSelect.init(elems, options);
@@ -223,6 +268,7 @@ async function selectPrice(type){
 
 
 function showSelectedTicket(){
+   // calculateTotalPrice();
     var strSeats = "";
     for(var i=1;i<=50;i++){
         if(selectedArray[i] != null && selectedArray[i] != -1){
@@ -242,6 +288,9 @@ function showSelectedTicket(){
         <div class="col s3">
             <h4 class="header">Selecionados: ${strSeats}</h4>
         </div>
+        <div class="col s3" id="total">
+        <h5 class="header">Valor total R$: 0</h5>
+    </div>
       </div>
       
       
@@ -250,7 +299,7 @@ function showSelectedTicket(){
         <li class="collection-item "  style="white-space: nowrap;">
 
           <span class="title">Inteira</span>
-          <p>R$: 20
+          <p>R$: ${price}
             <br>
             <br>
           </p>
@@ -264,7 +313,7 @@ function showSelectedTicket(){
 
           <li class="collection-item  " style="white-space: nowrap;">
             <span class="title">Meia</span>
-            <p>R$: 20
+            <p>R$: ${price/2}
               <br> <label> Necessário a apresentação de comprovante na entrada da sala</label>
             </p>
             <div class="input-field  right">
@@ -331,6 +380,27 @@ function showSelectedTicket(){
         var instances = M.Slider.init(elems, options);
       });
 }
+
+function getPrice(session){
+    switch(session.image_type){
+        case "IMAX 3D":
+        price = 40;
+        return 40;
+
+        case "IMAX 2D":
+        price = 35;
+        return 35;
+
+        case "3D":
+        price = 30;
+        return 30;
+
+        case "2D":
+        price = 25;
+        return 25;
+    }
+}
+
 
 
 function setButton(){
