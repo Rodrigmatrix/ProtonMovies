@@ -314,7 +314,7 @@ async function newSession() {
     .catch(error => console.error(error))
 }
 
-function updateSession() {
+function updateSession(session) {
   var options = {
     method: 'PUT',
     body: JSON.stringify(session),

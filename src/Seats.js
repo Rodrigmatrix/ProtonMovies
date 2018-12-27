@@ -4,6 +4,7 @@ var lastSelectedPrice;
 var lastSelectedHalfPrice;
 var price;
 var totalPrice;
+
 function setSeats(session){
     //console.log(session);
     //console.log("teste "+session.seats[0].client_id);
@@ -19,6 +20,16 @@ function setSeats(session){
         }
     }
     //console.log("array "+selectedArray);
+}
+
+async function getMovies() {
+    var data = await fetch('http://localhost:3000/movies');
+      return data.json();
+}
+
+async function getSessions() {
+    var data = await fetch('http://localhost:3000/sessions');
+      return data.json();
 }
 
 function rated(movie_rated){
@@ -141,7 +152,7 @@ function calculateTotalPrice(){
     return (fullPrice*price)+(halfPrice*(price/2));
 }
 
-function selectTicketsPrice(){
+async function selectTicketsPrice(){
     var fullPrice = parseInt(document.getElementById("price").value, 10);
     var halfPrice = parseInt(document.getElementById("halfPrice").value, 10);
     var arrayInfoCheckout = new Array();
@@ -160,8 +171,32 @@ function selectTicketsPrice(){
     }
     arrayInfoCheckout[1] = arraySeats;
     arrayInfoCheckout[2] = tickets_type;
+    
+
+    var movieId;
+
+        var url = window.location.href;
+        var arr = url.split("sessionid=");
+        var id = parseInt(arr[1], 10);  
+        //console.log(id);
+        var sessions = await getSessions();
+        for (var i in sessions) {
+          if (sessions[i].id == id) {
+            arrayInfoCheckout[3] = sessions[i];
+            movieId = sessions[i].movie_id;
+          }
+        }
+
+      var movies = await getMovies();
+      for (var i in movies) {
+        if (movies[i].id == movieId) {
+          arrayInfoCheckout[4] = movies[i];
+        }
+      }
+
     localStorage.setItem("ticketsPrice", JSON.stringify(arrayInfoCheckout));
-    console.log(localStorage.getItem("ticketsPrice"));
+    localStorage.setItem("inCheckout",true);
+    console.log(JSON.parse(localStorage.getItem("ticketsPrice")));
     window.open("checkout.html", "_self")
 }
 
@@ -425,16 +460,39 @@ function removeSelected(seat){
     //console.log(selectedArray);
     $("#array"+seat).remove();
 }
+function updateSession(session) {
+    var options = {
+      method: 'PUT',
+      body: JSON.stringify(session),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    }
+    return fetch('http://localhost:3000/sessions', options)
+      .then(res => res.json())
+      .then(post => console.log(post))
+      .catch(error => console.error(error));
+  }
 
-function selectSeat(seat){
+async function selectSeat(seat){
     // //localStorage.setItem("lastname", "Smith");
     // console.log(localStorage.getItem("lastname"));
     var image = document.getElementById(seat).src;
+    var sessions = await getSessions();
+    var url = window.location.href;
+    var arr = url.split("sessionid=");
+    var id = parseInt(arr[1], 10);  
     image = image.split("/");
     image = image[9];
     if(image == "selected.png"){
         document.getElementById(seat).src = "free.png";
         selectedArray[seat]=null;
+        for(var i in sessions){
+            if(sessions[i].id == id){
+                sessions[i].seats[seat] = null;
+                updateSession(sessions[i]);
+            }
+        }
         removeSelected(seat);
         size--;
         setButton();
@@ -443,6 +501,12 @@ function selectSeat(seat){
         if(size >= 5){
             M.toast({html: 'Você só pode selecionar no máximo 5 assentos por compra'});
             return ;
+        }
+        for(var i in sessions){
+            if(sessions[i].id == id){
+                sessions[i].seats[seat] = "taken";
+                updateSession(sessions[i]);
+            }
         }
         document.getElementById(seat).src = "selected.png";
         selectedArray[seat]=seat;

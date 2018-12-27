@@ -182,8 +182,7 @@ async function displaySessions(){
             <th></th>
             <th>Horários</th>
           </tr>
-        
-        
+                                                                       
         `);
         if((sessions[i].movie_id == id) && (mth == mthActual) && (day == dayActual) && (year == yearActual) && (hour >= hourActual) || (minutes<minutesActual && hour==hourActual)){
             none=false;

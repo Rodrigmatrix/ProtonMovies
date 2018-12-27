@@ -42,6 +42,25 @@ function displayPlayingMovies(){
     })
 }
 
+async function getSessions() {
+    var data = await fetch('http://localhost:3000/sessions');
+      return data.json();
+  }
+
+async function clearReservedAndStorage(){
+    var sessions = await getSessions();
+    var storage = JSON.parse(localStorage.getItem("ticketsPrice"));
+    if(storage != null){
+        for(var i in sessions){
+            if(sessions[i] == info[3]){
+                for(var j in info[2]){
+                    //TODO remover assentos reservados
+                }
+            }
+        }
+    }
+}
+
 
 
 
