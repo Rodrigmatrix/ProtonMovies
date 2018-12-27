@@ -173,20 +173,24 @@ async function displaySessions(){
         //console.log("cond dia "+ day);
         //console.log("cond mes "+ mth);
         //console.log("cond ano "+ year);
-
+        document.getElementById("tbl").innerHTML=( `
+        
+        
+          <tr class="center">
+            <th>Filme</th>
+            <th>Sala</th>
+            <th></th>
+            <th>Horários</th>
+          </tr>
+        
+        
+        `);
         if((sessions[i].movie_id == id) && (mth == mthActual) && (day == dayActual) && (year == yearActual) && (hour >= hourActual) || (minutes<minutesActual && hour==hourActual)){
             none=false;
             document.getElementById("tableSessions").innerHTML+=( `
-            <table class="center striped">
-      <thead>
-        <tr class="center">
-          <th>Filme</th>
-          <th>Sala</th>
-          <th></th>
-          <th>Horários</th>
-        </tr>
-      </thead>
-            <tbody class="center" id="tableSessions">
+            
+
+
             <tr>
                 <td>${movies[id-1].name}</td>
                 <td>${sessions[i].auditorium}</td>
@@ -195,8 +199,8 @@ async function displaySessions(){
                 <a href="file:///Users/rodrigogomes/Documents/Codes/ProtonMovies/src/buyTicket.html?sessionid=${sessions[i].id}" class="blue left waves-effect waves-light btn ">${hour+":"+minutes}</a>
                 </td>
             </tr>
-            </tbody>
-            </table>
+           
+            
             `);
         }
     }
@@ -209,6 +213,9 @@ async function displaySessions(){
     }
     else{
         setPagination();
+        document.getElementById("loader").innerHTML=(`
+            
+      `);
     }
 }
 async function setPagination(){
@@ -224,55 +231,55 @@ async function setPagination(){
             <li class="waves-effect"><a onclick="displaySessionsByDate(${day+4})">${day+4 +" Dec"}</a></li>
         `);
 }
-
-async function displaySessionsByDate(daySession){
+// FIXME corrigir o += para não somar com as sessões do dia anterior
+// async function displaySessionsByDate(daySession){
     
-    var url = window.location.href;
-    var arr = url.split("movieid=");
-    //console.log(arr);
-    var id = parseInt(arr[1], 10);
-    //console.log(id);
-    var movies = await getMovies();
-    //console.log(movies);
-    var sessions = await getSessions();
+//     var url = window.location.href;
+//     var arr = url.split("movieid=");
+//     //console.log(arr);
+//     var id = parseInt(arr[1], 10);
+//     //console.log(id);
+//     var movies = await getMovies();
+//     //console.log(movies);
+//     var sessions = await getSessions();
 
-    var mthActual = await getMonth();
-    var dayActual = await getDay();
-    dayActual = parseInt(dayActual, 10);
-    var yearActual = await getYear();
+//     var mthActual = await getMonth();
+//     var dayActual = await getDay();
+//     dayActual = parseInt(dayActual, 10);
+//     var yearActual = await getYear();
 
-    var hourActual = await getHour();
-    var minutesActual = await getMinutes();
+//     var hourActual = await getHour();
+//     var minutesActual = await getMinutes();
 
-    for(var i in sessions){
-        var mth = convertMonth(sessions[i].date);
-        var date = sessions[i].date;
-        //console.log("atual "+ date);
-        var splited = date.split(" ");
-        //console.log("se "+ splited);
-        var day = daySession;
-        var year = date[8]+date[9]+date[10]+date[11];
+//     for(var i in sessions){
+//         var mth = convertMonth(sessions[i].date);
+//         var date = sessions[i].date;
+//         //console.log("atual "+ date);
+//         var splited = date.split(" ");
+//         //console.log("se "+ splited);
+//         var day = daySession;
+//         var year = date[8]+date[9]+date[10]+date[11];
 
-        var time = sessions[i].time.split(":");
-        var hour = time[0];
-        var minutes = time[1];
-        //console.log("cond dia "+ day);
-        //console.log("cond mes "+ mth);
-        //console.log("cond ano "+ year);
-        if((sessions[i].movie_id == id) && (mth == mthActual) && (day == dayActual+1) && (year == yearActual) && (hour >= hourActual) || (minutes<minutesActual && hour==hourActual)){
-            document.getElementById("tableSessions").innerHTML+=( `
-            <tr>
-                <td>${movies[id-1].name}</td>
-                <td>${sessions[i].auditorium}</td>
-                <td>${sessions[i].image_type}</td>
-                <td>
-                <a href="file:///Users/rodrigogomes/Documents/Codes/ProtonMovies/src/Seats/pickSeat.html?sessionid=${sessions[i].id}" class="blue left waves-effect waves-light btn ">${hour+":"+minutes}</a>
-                </td>
-            </tr>
-            `);
-        }
-    }
-}
+//         var time = sessions[i].time.split(":");
+//         var hour = time[0];
+//         var minutes = time[1];
+//         //console.log("cond dia "+ day);
+//         //console.log("cond mes "+ mth);
+//         //console.log("cond ano "+ year);
+//         if((sessions[i].movie_id == id) && (mth == mthActual) && (day == dayActual+1) && (year == yearActual) && (hour >= hourActual) || (minutes<minutesActual && hour==hourActual)){
+//             document.getElementById("tableSessions").innerHTML+=( `
+//             <tr>
+//                 <td>${movies[id-1].name}</td>
+//                 <td>${sessions[i].auditorium}</td>
+//                 <td>${sessions[i].image_type}</td>
+//                 <td>
+//                 <a href="file:///Users/rodrigogomes/Documents/Codes/ProtonMovies/src/Seats/pickSeat.html?sessionid=${sessions[i].id}" class="blue left waves-effect waves-light btn ">${hour+":"+minutes}</a>
+//                 </td>
+//             </tr>
+//             `);
+//         }
+//     }
+// }
 
 function rated(movie_rated){
     switch(movie_rated){

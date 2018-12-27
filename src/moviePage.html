@@ -89,23 +89,46 @@
 <div class="card-panel blue z-depth-5 center bold">Horários</div>
 
 <div id="content_sessions" class="row center container">
+    
+      <div id="loader">
+          <div class="preloader-wrapper big active">
+              <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+      </div>
+      
+    </div>
+    <ul id="playingDates" class="pagination ">
+        
+      </ul>
   
-  <ul id="playingDates" class="pagination ">
-      <div class="preloader-wrapper big active">
-          <div class="spinner-layer spinner-blue">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div><div class="gap-patch">
-              <div class="circle"></div>
-            </div><div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
-          </div>
-  </ul>
-  <div id="tableSessions" class="row center container"></div>
+  
 
+
+  <div  class="row center container">
+      <table class="center striped">
+          <thead id="tbl">
+
+          </thead>
+
+
+          <tbody class="center" id="tableSessions">
+            </tbody>
+      </table>
+
+     
+    
+  </div>
 </div>
+
 </body>
+
 <footer class="blue page-footer">
   <div class="container">
     <div class="row">
