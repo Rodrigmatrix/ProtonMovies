@@ -1,9 +1,20 @@
 var minutes = 4;
-var seconds = 60;
+var seconds = 59;
+var expired = false;
+var ID = function () {
+    // Math.random should be unique because of its seeding algorithm.
+    // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+    // after the decimal.
+    return '_' + Math.random().toString(36).substr(2, 9);
+};
 function getPurchaseData(){
     var info = JSON.parse(localStorage.getItem("ticketsPrice"));
-    console.log(info);
-    document.getElementById("priceCard").innerHTML=( `
+    if(info == null){
+        // alert("Sessão Expirada. Você será redirecionado para a página inicial");
+        // window.open("index.html", "_self");
+    }
+    else{
+        document.getElementById("priceCard").innerHTML=( `
     <input id="card" type="radio" name="payment" >
     Pague R$ ${info[0]} com seu cartão
         `);
@@ -11,7 +22,34 @@ function getPurchaseData(){
         <input id="paypal" type="radio" name="payment" >
             Pague R$ ${info[0]} com o PayPal 
         `);
+    }
+    
 }
+
+function goToIndex(){
+    localStorage.clear();
+    alert("Sua sessão será expirada. Você será redirecinado para a página inicial");
+    window.open("index.html", "_self");
+}
+
+async function getSessions() {
+    var data = await fetch('http://localhost:3000/sessions');
+      return data.json();
+}
+
+async function makePayment(){
+    var info = JSON.parse(localStorage.getItem("ticketsPrice"));
+    var sessions = await getSessions();
+    //var price = info[0];
+    var card_number;
+    var name;
+    var expire_date;
+    var cvv;
+    expired = true;
+    window.open("purchaseDetails.html", "_self");
+}
+
+
 function showCountdown(){
         setInterval(function(){
             if(minutes == 0 && seconds == 0){
@@ -36,11 +74,19 @@ function showCountdown(){
         }, 1000);
 }
 
+// define(function (require) {
+//     var stripe = require("stripe")("sk_test_HWUFFsYRssueLSfoNn9yCMqj");
+// });
+// define(['require', 'stripe'], function (require) {
+//     var stripe = require("stripe")("sk_test_HWUFFsYRssueLSfoNn9yCMqj");
+// });
+
 function countdown(){
     showCountdown();
     setTimeout(function(){
          alert("Tempo da Sessão expirado. Você será redirecinado para a página inicial");
          localStorage.clear();
+         expired = true;
          clearTimeout();
          window.open("index.html", "_self");
          
@@ -48,6 +94,15 @@ function countdown(){
     
 }
 
+window.onbeforeunload = function(){
+    localStorage.clear();
+    if(expired == true){
+        return undefined;
+    }
+    else{
+        return 'Você irá perder os seus ingressos e sua sessão irá expixar ao fechar essa página';
+    }
+}
 
 $(document).ready(function() {
     // Radio box border

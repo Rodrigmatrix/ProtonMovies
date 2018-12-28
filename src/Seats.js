@@ -4,31 +4,17 @@ var lastSelectedPrice;
 var lastSelectedHalfPrice;
 var price;
 var totalPrice;
-var url = window.location.href;
-var arr = url.split("sessionid=");
-var id = parseInt(arr[1], 10); 
-var uniqueID = generateUniqueID();
 
-function generateUniqueID(){
-    return '_' + Math.random().toString(36).substr(2, 9);
-} 
 
-async function setSeats(){
+
+function setSeats(session){
     //console.log(session);
     //console.log("teste "+session.seats[0].client_id);
-    var session = await getSessions();
-    for(var i in session){
-        if(session[i].id == id){
-            session = session[i];
-            break;
-        }
-    }
-    for(var i=0;i<=59;i++){
+    for(var i=0;i<=49;i++){
         var value = session.seats[i].client_id;
         if(value == null){
             document.getElementById(i+1).src = "free.png";
             selectedArray[i+1]=null;
-            //continue;
         }
         else{
             document.getElementById(i+1).src = "taken.png";
@@ -37,75 +23,6 @@ async function setSeats(){
     }
     //console.log("array "+selectedArray);
 }
-
-
-
-async function setSeatsAfter(){
-    //console.log(session);
-    //console.log("teste "+session.seats[0].client_id);
-    var session = await getSessions();
-    for(var i in session){
-        if(session[i].id == id){
-            session = session[i];
-            break;
-        }
-    }
-    for(var i=0;i<=59;i++){
-        var value = session.seats[i].client_id;
-        if(value == null){
-            document.getElementById(i+1).src = "free.png";
-            selectedArray[i+1]=null;
-            continue;
-        }
-        else{
-            if(session.seats[i].client_id == uniqueID){
-                document.getElementById(i+1).src = "selected.png";
-            selectedArray[i+1]=-1;
-            }
-            else{
-                document.getElementById(i+1).src = "taken.png";
-                selectedArray[i+1]=-1;
-            }
-            
-        }
-    }
-    //console.log("array "+selectedArray);
-}
-
-// async function setSeats(seat){
-//     //console.log(session);
-//     //console.log("teste "+session.seats[0].client_id);
-//     var session = await getSessions();
-//     for(var i in session){
-//         if(session[i].id == id){
-//             session = session[i];
-//             break;
-//         }
-//     }
-//     for(var i=0;i<=49;i++){
-//         var value = session.seats[i].client_id;
-//         if(value == null){
-//             document.getElementById(i+1).src = "free.png";
-//             selectedArray[i+1]=null;
-//         }
-//         else{
-//             if(session.seats[seat].client_id != null){
-//                 if(session.seats[seat].client_id == uniqueID){
-//                     document.getElementById(i+1).src = "selected.png";
-//                     selectedArray[i+1]=uniqueID;
-//                 }
-//                 else{
-//                     document.getElementById(i+1).src = "taken.png";
-//                 }
-                
-//             }
-//             else{
-//                 document.getElementById(i+1).src = "free.png";
-//             }
-//         }
-//     }
-//     //console.log("array "+selectedArray);
-// }
 
 async function getMovies() {
     var data = await fetch('http://localhost:3000/movies');
@@ -147,7 +64,6 @@ function showSessionInfo(session,movie){
     <div class="col s6" style="height: 415px; border-top:0; border-left:0; ">
       <img src="${movie.poster_image}" class="" style="height: 415px; width: 270px; border-left:0; border: none; border-spacing: 0px; ">
     </div>
-
     <div class="col-content s4">
       <p class=" center flow-text">${movie.name}</p>
       
@@ -160,7 +76,6 @@ function showSessionInfo(session,movie){
         style="height: 30px; width: 30px;">
     </div>
   </div>
-
     `);
 }
 
@@ -404,7 +319,6 @@ function showSelectedTicket(){
         <div class="col s9">
             <h3 class="header">Selecione o tipo do ingresso</h3>
         </div>
-
         <div class="col s3">
             <h4 class="header">Selecionados: ${strSeats}</h4>
         </div>
@@ -415,9 +329,7 @@ function showSelectedTicket(){
       
       
       <ul class="collection">
-
         <li class="collection-item "  style="white-space: nowrap;">
-
           <span class="title">Inteira</span>
           <p>R$: ${price}
             <br>
@@ -430,7 +342,6 @@ function showSelectedTicket(){
               <label>Quantidade</label>
             </div>
         </li>
-
           <li class="collection-item  " style="white-space: nowrap;">
             <span class="title">Meia</span>
             <p>R$: ${price/2}
@@ -523,33 +434,6 @@ function getPrice(session){
 
 
 
-
-window.onbeforeunload = async function() {
-    var session = await getSessions();
-    var update = {
-        "seat": null,
-        "client_id": null,
-        "selected": true
-    }
-    for(var i in session){
-        if(session[i].id == id){
-            session = session[i];
-            for(var j=0;j<60;j++){
-                if(session.seats[j].client_id == uniqueID){
-                    update.seat = j+1;
-                    session.seats[j] = update;
-                }
-            }
-            await updateSession(session);
-            break;
-        }
-    }
-    //$(window).unbind();
-    return undefined;
-};
-
-
-
 function setButton(){
     if(size != 0){
         showSelectedTicket();
@@ -572,7 +456,6 @@ function removeSelected(seat){
     //console.log(selectedArray);
     $("#array"+seat).remove();
 }
-
 function updateSession(session) {
     var options = {
       method: 'PUT',
@@ -581,27 +464,20 @@ function updateSession(session) {
         'Content-Type': 'application/json'
       })
     }
-    return fetch(`http://localhost:3000/sessions/${session.id}`, options)
+    return fetch('http://localhost:3000/sessions', options)
       .then(res => res.json())
       .then(post => console.log(post))
       .catch(error => console.error(error));
   }
 
-
-
 async function selectSeat(seat){
-    await setSeatsAfter();
+    // //localStorage.setItem("lastname", "Smith");
+    // console.log(localStorage.getItem("lastname"));
     var image = document.getElementById(seat).src;
     var sessions = await getSessions();
     var url = window.location.href;
     var arr = url.split("sessionid=");
     var id = parseInt(arr[1], 10);  
-    var seatVar = {
-        "seat": null,
-        "client_id": null,
-        "selected": true
-      };
-
     image = image.split("/");
     image = image[9];
     if(image == "selected.png"){
@@ -609,35 +485,29 @@ async function selectSeat(seat){
         selectedArray[seat]=null;
         for(var i in sessions){
             if(sessions[i].id == id){
-                seatVar.seat = seat;
-                seatVar.client_id = null;
-                sessions[i].seats[seat-1] = seatVar;
-                await updateSession(sessions[i]);
+                sessions[i].seats[seat] = null;
+                updateSession(sessions[i]);
             }
         }
         removeSelected(seat);
         size--;
         setButton();
     }
-
     if(image == "free.png"){
         if(size >= 5){
             M.toast({html: 'Você só pode selecionar no máximo 5 assentos por compra'});
             return ;
         }
-        document.getElementById(seat).src = "selected.png";
         for(var i in sessions){
             if(sessions[i].id == id){
-                seatVar.seat = seat;
-                seatVar.client_id = uniqueID;
-                sessions[i].seats[seat-1] = seatVar;
-                await updateSession(sessions[i]);
+                sessions[i].seats[seat] = "taken";
+                updateSession(sessions[i]);
             }
         }
+        document.getElementById(seat).src = "selected.png";
         selectedArray[seat]=seat;
         printSelected(seat);
         size++;
         setButton();
     }
-    await setSeatsAfter();
 }
