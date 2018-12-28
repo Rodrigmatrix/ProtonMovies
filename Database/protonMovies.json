@@ -97,82 +97,82 @@
         {
           "seat": 1,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 2,
-          "client_id": null,
-          "selected": false
+          "client_id": "_hgwucpq5o",
+          "selected": true
         },
         {
           "seat": 3,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 4,
-          "client_id": null,
-          "selected": false
+          "client_id": "_oijq5jdpu",
+          "selected": true
         },
         {
           "seat": 5,
-          "client_id": null,
-          "selected": false
+          "client_id": "_1pgqihi8q",
+          "selected": true
         },
         {
           "seat": 6,
-          "client_id": null,
-          "selected": false
+          "client_id": "_c40cijwez",
+          "selected": true
         },
         {
           "seat": 7,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 8,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 9,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 10,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 11,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 12,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 13,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 14,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 15,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 16,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 17,
@@ -182,37 +182,37 @@
         {
           "seat": 18,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 19,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 20,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 21,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 22,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 23,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 24,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 25,
@@ -242,7 +242,7 @@
         {
           "seat": 30,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 31,
@@ -252,22 +252,22 @@
         {
           "seat": 32,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 33,
-          "client_id": null,
-          "selected": false
+          "client_id": "_biyxmo9u5",
+          "selected": true
         },
         {
           "seat": 34,
-          "client_id": null,
-          "selected": false
+          "client_id": "_biyxmo9u5",
+          "selected": true
         },
         {
           "seat": 35,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 36,
@@ -292,27 +292,27 @@
         {
           "seat": 40,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 41,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 42,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 43,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 44,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 45,
@@ -342,22 +342,22 @@
         {
           "seat": 50,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 51,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 52,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 53,
           "client_id": null,
-          "selected": false
+          "selected": true
         },
         {
           "seat": 54,

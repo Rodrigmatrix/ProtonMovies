@@ -23,7 +23,7 @@ async function setSeats(){
             break;
         }
     }
-    for(var i=0;i<=49;i++){
+    for(var i=0;i<=59;i++){
         var value = session.seats[i].client_id;
         if(value == null){
             document.getElementById(i+1).src = "free.png";
@@ -50,7 +50,7 @@ async function setSeatsAfter(){
             break;
         }
     }
-    for(var i=0;i<=49;i++){
+    for(var i=0;i<=59;i++){
         var value = session.seats[i].client_id;
         if(value == null){
             document.getElementById(i+1).src = "free.png";
@@ -521,10 +521,34 @@ function getPrice(session){
     }
 }
 
-window.onbeforeunload = function(e) {
-    
-    return 'Dialog text here.';
+
+
+
+window.onbeforeunload = async function() {
+    var session = await getSessions();
+    var update = {
+        "seat": null,
+        "client_id": null,
+        "selected": true
+    }
+    for(var i in session){
+        if(session[i].id == id){
+            session = session[i];
+            for(var j=0;j<60;j++){
+                if(session.seats[j].client_id == uniqueID){
+                    update.seat = j+1;
+                    session.seats[j] = update;
+                }
+            }
+            await updateSession(session);
+            break;
+        }
+    }
+    //$(window).unbind();
+    return undefined;
 };
+
+
 
 function setButton(){
     if(size != 0){
@@ -563,6 +587,8 @@ function updateSession(session) {
       .catch(error => console.error(error));
   }
 
+
+
 async function selectSeat(seat){
     await setSeatsAfter();
     var image = document.getElementById(seat).src;
@@ -573,9 +599,9 @@ async function selectSeat(seat){
     var seatVar = {
         "seat": null,
         "client_id": null,
-        "selected": false
+        "selected": true
       };
-      
+
     image = image.split("/");
     image = image[9];
     if(image == "selected.png"){
@@ -593,6 +619,7 @@ async function selectSeat(seat){
         size--;
         setButton();
     }
+
     if(image == "free.png"){
         if(size >= 5){
             M.toast({html: 'Você só pode selecionar no máximo 5 assentos por compra'});
