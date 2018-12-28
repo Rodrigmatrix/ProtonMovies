@@ -80,206 +80,307 @@ async function newSession() {
     seats: [
       {
         "seat": 1,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 2,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 3,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 4,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 5,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 6,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 7,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 8,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 9,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 10,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 11,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 12,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 13,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 14,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 15,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 16,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 17,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 18,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 19,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 20,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 21,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 22,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 23,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 24,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 25,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 26,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 27,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 28,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 29,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 30,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 31,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 32,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 33,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 34,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 35,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 36,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 37,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 38,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 39,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 40,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 41,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 42,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 43,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 44,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 45,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 46,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 47,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 48,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 49,
-        "client_id": null
+        "client_id": null,
+        "selected": false
       },
       {
         "seat": 50,
-        "client_id": null
+        "client_id": null,
+        "selected": false
+      },
+      {
+        "seat": 51,
+        "client_id": null,
+        "selected": false
+      },
+      {
+        "seat": 52,
+        "client_id": null,
+        "selected": false
+      },
+      {
+        "seat": 53,
+        "client_id": null,
+        "selected": false
+      },
+      {
+        "seat": 54,
+        "client_id": null,
+        "selected": false
+      },
+      {
+        "seat": 55,
+        "client_id": null,
+        "selected": false
+      },
+      {
+        "seat": 56,
+        "client_id": null,
+        "selected": false
+      },
+      {
+        "seat": 57,
+        "client_id": null,
+        "selected": false
+      },
+      {
+        "seat": 58,
+        "client_id": null,
+        "selected": false
+      },
+      {
+        "seat": 59,
+        "client_id": null,
+        "selected": false
+      },
+      {
+        "seat": 60,
+        "client_id": null,
+        "selected": false
       }
     ]
   }
+  
   
   switch(session.image_type){
     case "IMAX 3D":
@@ -322,12 +423,13 @@ function updateSession(session) {
       'Content-Type': 'application/json'
     })
   }
-  return fetch('http://localhost:3000/sessions', options)
+  return fetch(`http://localhost:3000/sessions/${session.id}`, options)
     .then(res => res.json())
-    .catch(error => console.error(error))
+    .then(post => console.log(post))
+    .catch(error => console.error(error));
 }
 
-function updateMovie() {
+function updateMovie(movie) {
   var options = {
     method: 'PUT',
     body: JSON.stringify(movie),
@@ -335,12 +437,12 @@ function updateMovie() {
       'Content-Type': 'application/json'
     })
   }
-  return fetch('http://localhost:3000/movies', options)
+  return fetch(`http://localhost:3000/movies/${movie.id}`, options)
     .then(res => res.json())
     .catch(error => console.error(error))
 }
 
-function deleteMovie() {
+function deleteMovie(movie) {
   var options = {
     method: 'DELETE',
     body: JSON.stringify(movie),
@@ -348,12 +450,12 @@ function deleteMovie() {
       'Content-Type': 'application/json'
     })
   }
-  return fetch('http://localhost:3000/movies', options)
+  return fetch(`http://localhost:3000/movies/${movie.id}`, options)
     .then(res => res.json())
     .catch(error => console.error(error))
 }
 
-function deleteSession() {
+function deleteSession(session) {
   var options = {
     method: 'DELETE',
     body: JSON.stringify(session),
@@ -361,7 +463,7 @@ function deleteSession() {
       'Content-Type': 'application/json'
     })
   }
-  return fetch('http://localhost:3000/sessions', options)
+  return fetch(`http://localhost:3000/sessions/${session.id}`, options)
     .then(res => res.json())
     .catch(error => console.error(error))
 }

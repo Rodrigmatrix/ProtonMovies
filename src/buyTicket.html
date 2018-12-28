@@ -249,18 +249,19 @@
 <script src="Api.js"></script>
 <script src="Seats.js"></script>
 <script>
-  getSessions().then(async function (response) {
+
+  getSessions().then(async function (response){
     var url = window.location.href;
     var arr = url.split("sessionid=");
     var id = parseInt(arr[1], 10);
     var session;
-    for (var i in response) {
-      if (id == response[i].id) {
+    for(var i in response){
+      if (id == response[i].id){
         session = response[i];
       }
     }
     var movies = await getMovies();
-    for (var i in movies) {
+    for(var i in movies){
       if (session.movie_id == movies[i].id) {
         showSessionInfo(session, movies[i]);
       }
@@ -268,7 +269,7 @@
 
 
   });
-
+ 
   getSessions().then(async function (response) {
     var url = window.location.href;
     var arr = url.split("sessionid=");

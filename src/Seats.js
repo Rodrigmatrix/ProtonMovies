@@ -4,15 +4,31 @@ var lastSelectedPrice;
 var lastSelectedHalfPrice;
 var price;
 var totalPrice;
+var url = window.location.href;
+var arr = url.split("sessionid=");
+var id = parseInt(arr[1], 10); 
+var uniqueID = generateUniqueID();
 
-function setSeats(session){
+function generateUniqueID(){
+    return '_' + Math.random().toString(36).substr(2, 9);
+} 
+
+async function setSeats(){
     //console.log(session);
     //console.log("teste "+session.seats[0].client_id);
+    var session = await getSessions();
+    for(var i in session){
+        if(session[i].id == id){
+            session = session[i];
+            break;
+        }
+    }
     for(var i=0;i<=49;i++){
         var value = session.seats[i].client_id;
         if(value == null){
             document.getElementById(i+1).src = "free.png";
             selectedArray[i+1]=null;
+            //continue;
         }
         else{
             document.getElementById(i+1).src = "taken.png";
@@ -21,6 +37,75 @@ function setSeats(session){
     }
     //console.log("array "+selectedArray);
 }
+
+
+
+async function setSeatsAfter(){
+    //console.log(session);
+    //console.log("teste "+session.seats[0].client_id);
+    var session = await getSessions();
+    for(var i in session){
+        if(session[i].id == id){
+            session = session[i];
+            break;
+        }
+    }
+    for(var i=0;i<=49;i++){
+        var value = session.seats[i].client_id;
+        if(value == null){
+            document.getElementById(i+1).src = "free.png";
+            selectedArray[i+1]=null;
+            continue;
+        }
+        else{
+            if(session.seats[i].client_id == uniqueID){
+                document.getElementById(i+1).src = "selected.png";
+            selectedArray[i+1]=-1;
+            }
+            else{
+                document.getElementById(i+1).src = "taken.png";
+                selectedArray[i+1]=-1;
+            }
+            
+        }
+    }
+    //console.log("array "+selectedArray);
+}
+
+// async function setSeats(seat){
+//     //console.log(session);
+//     //console.log("teste "+session.seats[0].client_id);
+//     var session = await getSessions();
+//     for(var i in session){
+//         if(session[i].id == id){
+//             session = session[i];
+//             break;
+//         }
+//     }
+//     for(var i=0;i<=49;i++){
+//         var value = session.seats[i].client_id;
+//         if(value == null){
+//             document.getElementById(i+1).src = "free.png";
+//             selectedArray[i+1]=null;
+//         }
+//         else{
+//             if(session.seats[seat].client_id != null){
+//                 if(session.seats[seat].client_id == uniqueID){
+//                     document.getElementById(i+1).src = "selected.png";
+//                     selectedArray[i+1]=uniqueID;
+//                 }
+//                 else{
+//                     document.getElementById(i+1).src = "taken.png";
+//                 }
+                
+//             }
+//             else{
+//                 document.getElementById(i+1).src = "free.png";
+//             }
+//         }
+//     }
+//     //console.log("array "+selectedArray);
+// }
 
 async function getMovies() {
     var data = await fetch('http://localhost:3000/movies');
@@ -436,7 +521,10 @@ function getPrice(session){
     }
 }
 
-
+window.onbeforeunload = function(e) {
+    
+    return 'Dialog text here.';
+};
 
 function setButton(){
     if(size != 0){
@@ -460,6 +548,7 @@ function removeSelected(seat){
     //console.log(selectedArray);
     $("#array"+seat).remove();
 }
+
 function updateSession(session) {
     var options = {
       method: 'PUT',
@@ -468,20 +557,25 @@ function updateSession(session) {
         'Content-Type': 'application/json'
       })
     }
-    return fetch('http://localhost:3000/sessions', options)
+    return fetch(`http://localhost:3000/sessions/${session.id}`, options)
       .then(res => res.json())
       .then(post => console.log(post))
       .catch(error => console.error(error));
   }
 
 async function selectSeat(seat){
-    // //localStorage.setItem("lastname", "Smith");
-    // console.log(localStorage.getItem("lastname"));
+    await setSeatsAfter();
     var image = document.getElementById(seat).src;
     var sessions = await getSessions();
     var url = window.location.href;
     var arr = url.split("sessionid=");
     var id = parseInt(arr[1], 10);  
+    var seatVar = {
+        "seat": null,
+        "client_id": null,
+        "selected": false
+      };
+      
     image = image.split("/");
     image = image[9];
     if(image == "selected.png"){
@@ -489,8 +583,10 @@ async function selectSeat(seat){
         selectedArray[seat]=null;
         for(var i in sessions){
             if(sessions[i].id == id){
-                sessions[i].seats[seat] = null;
-                updateSession(sessions[i]);
+                seatVar.seat = seat;
+                seatVar.client_id = null;
+                sessions[i].seats[seat-1] = seatVar;
+                await updateSession(sessions[i]);
             }
         }
         removeSelected(seat);
@@ -502,16 +598,19 @@ async function selectSeat(seat){
             M.toast({html: 'Você só pode selecionar no máximo 5 assentos por compra'});
             return ;
         }
+        document.getElementById(seat).src = "selected.png";
         for(var i in sessions){
             if(sessions[i].id == id){
-                sessions[i].seats[seat] = "taken";
-                updateSession(sessions[i]);
+                seatVar.seat = seat;
+                seatVar.client_id = uniqueID;
+                sessions[i].seats[seat-1] = seatVar;
+                await updateSession(sessions[i]);
             }
         }
-        document.getElementById(seat).src = "selected.png";
         selectedArray[seat]=seat;
         printSelected(seat);
         size++;
         setButton();
     }
+    await setSeatsAfter();
 }
