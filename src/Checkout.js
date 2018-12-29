@@ -1,26 +1,20 @@
 var minutes = 4;
 var seconds = 59;
 var expired = false;
-var ID = function () {
-    // Math.random should be unique because of its seeding algorithm.
-    // Convert it to base 36 (numbers + letters), and grab the first 9 characters
-    // after the decimal.
+var uniqueID;
+async function generateUniqueID(){
     return '_' + Math.random().toString(36).substr(2, 9);
-};
-function getPurchaseData(){
+}
+async function getPurchaseData(){
+    uniqueID = await generateUniqueID();
     var info = JSON.parse(localStorage.getItem("ticketsPrice"));
     if(info == null){
-        // alert("Sessão Expirada. Você será redirecionado para a página inicial");
-        // window.open("index.html", "_self");
+        alert("Sessão Expirada. Você será redirecionado para a página inicial");
+        window.open("index.html", "_self");
     }
     else{
-        document.getElementById("priceCard").innerHTML=( `
-    <input id="card" type="radio" name="payment" >
-    Pague R$ ${info[0]} com seu cartão
-        `);
-        document.getElementById("pricePayPal").innerHTML=( `
-        <input id="paypal" type="radio" name="payment" >
-            Pague R$ ${info[0]} com o PayPal 
+        document.getElementById("price").innerHTML=( `
+    <h4 style="margin-top: 0; margin-bottom: 10px; padding: 0px 0px 0; flex: 1; color: rgb(119, 219, 119);">Valor da compra R$: ${info[0]} </h4>
         `);
     }
     
@@ -36,21 +30,67 @@ async function getSessions() {
     var data = await fetch('http://localhost:3000/sessions');
       return data.json();
 }
+async function updateSession(session) {
+    var options = {
+      method: 'PUT',
+      body: JSON.stringify(session),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    }
+    return fetch(`http://localhost:3000/sessions/${session.id}`, options)
+      .then(res => res.json())
+      .then(post => console.log(post))
+      .catch(error => console.error(error));
+  
+}
 
 async function makePayment(){
     var info = JSON.parse(localStorage.getItem("ticketsPrice"));
+    console.log(info);
     var sessions = await getSessions();
-    //var price = info[0];
-    var card_number;
-    var name;
-    var expire_date;
-    var cvv;
+    var purchased = false;
+    // //var price = info[0];
+    // sem verificação de input //TODO adicionar
+    // var card_number = document.getElementById("cardnumber").value;
+    // var name = document.getElementById("cardholder").value;
+    // var expire_date = document.getElementById("date").value;
+    // var cvv = document.getElementById("verification").value;
     expired = true;
-    window.open("purchaseDetails.html", "_self");
+    for(var i in sessions){
+        if(info[5] == sessions[i].id){
+            var session = sessions[i];
+            var seats = info[1];
+            for(var j in seats){
+                if(session.seats[seats[j]].client_id == null){
+                    session.seats[seats[j]-1].seat = seats[j];
+                    session.seats[seats[j]-1].client_id = uniqueID;
+                }
+                else{
+                    purchased = true;
+                    break;
+                }
+            }
+            if(purchased != true){
+                await updateSession(session);
+                console.log(session);
+                expired = true;
+                alert("Sucesso");
+            }
+            else{
+                alert("Seus assentos selecionados foram comprados por outro cliente. Iremos finalizar sua sessão");
+                window.open("index.html", "_self");
+            }
+        }
+    }
+    //TODO adicionar loading para dar contexto
+    //FIXME não limpar storage ao chamar purchaseDetails
+     window.open("purchaseDetails.html", "_self");
 }
 
 
 function showCountdown(){
+
         setInterval(function(){
             if(minutes == 0 && seconds == 0){
                 document.getElementById("timeLeft").innerHTML=( `
@@ -74,12 +114,6 @@ function showCountdown(){
         }, 1000);
 }
 
-// define(function (require) {
-//     var stripe = require("stripe")("sk_test_HWUFFsYRssueLSfoNn9yCMqj");
-// });
-// define(['require', 'stripe'], function (require) {
-//     var stripe = require("stripe")("sk_test_HWUFFsYRssueLSfoNn9yCMqj");
-// });
 
 function countdown(){
     showCountdown();
@@ -103,7 +137,6 @@ window.onbeforeunload = function(){
         return 'Você irá perder os seus ingressos e sua sessão irá expixar ao fechar essa página';
     }
 }
-
 $(document).ready(function() {
     // Radio box border
     $('.method').on('click', function() {

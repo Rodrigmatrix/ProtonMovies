@@ -88,625 +88,253 @@
   "sessions": [
     {
       "movie_id": "4",
-      "date": "Dec 27, 2018",
+      "date": "Dec 29, 2018",
       "time": "23:59:00",
       "auditorium": "Sala 1",
       "image_type": "IMAX 3D",
       "ticket_price": "40.00",
       "seats": [
         {
-          "seat": 1,
-          "client_id": null,
-          "selected": true
+          "seat": "11",
+          "client_id": "_9maw1p1cx"
         },
         {
-          "seat": 2,
-          "client_id": "_hgwucpq5o",
-          "selected": true
+          "seat": "11",
+          "client_id": "_9maw1p1cx"
         },
         {
           "seat": 3,
-          "client_id": null,
-          "selected": true
+          "client_id": "_kv1npodjr"
         },
         {
           "seat": 4,
-          "client_id": "_oijq5jdpu",
-          "selected": true
+          "client_id": "_kv1npodjr"
         },
         {
           "seat": 5,
-          "client_id": "_1pgqihi8q",
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 6,
-          "client_id": "_c40cijwez",
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 7,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 8,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 9,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 10,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 11,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 12,
           "client_id": null,
-          "selected": true
+          "selected": false
         },
         {
           "seat": 13,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 14,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 15,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 16,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 17,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 18,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 19,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 20,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 21,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 22,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 23,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 24,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 25,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 26,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
-          "seat": 27,
-          "client_id": null,
-          "selected": false
+          "seat": 27
         },
         {
-          "seat": 28,
-          "client_id": null,
-          "selected": false
+          "seat": 27
         },
         {
           "seat": 29,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 30,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 31,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 32,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 33,
-          "client_id": "_biyxmo9u5",
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 34,
-          "client_id": "_biyxmo9u5",
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 35,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 36,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 37,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 38,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 39,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 40,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 41,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 42,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 43,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 44,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 45,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 46,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 47,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 48,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 49,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 50,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 51,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 52,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 53,
-          "client_id": null,
-          "selected": true
+          "client_id": null
         },
         {
           "seat": 54,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 55,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 56,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 57,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 58,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 59,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         },
         {
           "seat": 60,
-          "client_id": null,
-          "selected": false
+          "client_id": null
         }
       ],
       "id": 1
-    },
-    {
-      "movie_id": "4",
-      "date": "Dec 28, 2018",
-      "time": "23:59:00",
-      "auditorium": "Sala 1",
-      "image_type": "IMAX 3D",
-      "ticket_price": "40.00",
-      "seats": [
-        {
-          "seat": 1,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 2,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 3,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 4,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 5,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 6,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 7,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 8,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 9,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 10,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 11,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 12,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 13,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 14,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 15,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 16,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 17,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 18,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 19,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 20,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 21,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 22,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 23,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 24,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 25,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 26,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 27,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 28,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 29,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 30,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 31,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 32,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 33,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 34,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 35,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 36,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 37,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 38,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 39,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 40,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 41,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 42,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 43,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 44,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 45,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 46,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 47,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 48,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 49,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 50,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 52,
-          "client_id": null,
-          "selected": true
-        },
-        {
-          "seat": 52,
-          "client_id": null,
-          "selected": true
-        },
-        {
-          "seat": 53,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 54,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 55,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 56,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 57,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 58,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 59,
-          "client_id": null,
-          "selected": false
-        },
-        {
-          "seat": 60,
-          "client_id": null,
-          "selected": false
-        }
-      ],
-      "id": 2
     }
   ]
 }

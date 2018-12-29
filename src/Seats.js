@@ -4,9 +4,6 @@ var lastSelectedPrice;
 var lastSelectedHalfPrice;
 var price;
 var totalPrice;
-
-
-
 function setSeats(session){
     //console.log(session);
     //console.log("teste "+session.seats[0].client_id);
@@ -22,16 +19,6 @@ function setSeats(session){
         }
     }
     //console.log("array "+selectedArray);
-}
-
-async function getMovies() {
-    var data = await fetch('http://localhost:3000/movies');
-      return data.json();
-}
-
-async function getSessions() {
-    var data = await fetch('http://localhost:3000/sessions');
-      return data.json();
 }
 
 function rated(movie_rated){
@@ -193,7 +180,7 @@ async function selectTicketsPrice(){
           arrayInfoCheckout[4] = movies[i];
         }
       }
-
+      arrayInfoCheckout[5] = id;
     localStorage.setItem("ticketsPrice", JSON.stringify(arrayInfoCheckout));
     localStorage.setItem("inCheckout",true);
     console.log(JSON.parse(localStorage.getItem("ticketsPrice")));
@@ -456,39 +443,16 @@ function removeSelected(seat){
     //console.log(selectedArray);
     $("#array"+seat).remove();
 }
-function updateSession(session) {
-    var options = {
-      method: 'PUT',
-      body: JSON.stringify(session),
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      })
-    }
-    return fetch('http://localhost:3000/sessions', options)
-      .then(res => res.json())
-      .then(post => console.log(post))
-      .catch(error => console.error(error));
-  }
 
-async function selectSeat(seat){
+function selectSeat(seat){
     // //localStorage.setItem("lastname", "Smith");
     // console.log(localStorage.getItem("lastname"));
     var image = document.getElementById(seat).src;
-    var sessions = await getSessions();
-    var url = window.location.href;
-    var arr = url.split("sessionid=");
-    var id = parseInt(arr[1], 10);  
     image = image.split("/");
     image = image[9];
     if(image == "selected.png"){
         document.getElementById(seat).src = "free.png";
         selectedArray[seat]=null;
-        for(var i in sessions){
-            if(sessions[i].id == id){
-                sessions[i].seats[seat] = null;
-                updateSession(sessions[i]);
-            }
-        }
         removeSelected(seat);
         size--;
         setButton();
@@ -497,12 +461,6 @@ async function selectSeat(seat){
         if(size >= 5){
             M.toast({html: 'Você só pode selecionar no máximo 5 assentos por compra'});
             return ;
-        }
-        for(var i in sessions){
-            if(sessions[i].id == id){
-                sessions[i].seats[seat] = "taken";
-                updateSession(sessions[i]);
-            }
         }
         document.getElementById(seat).src = "selected.png";
         selectedArray[seat]=seat;
