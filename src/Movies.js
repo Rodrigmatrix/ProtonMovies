@@ -43,7 +43,13 @@ function displayPlayingMovies(){
 }
 
 async function getSessions() {
-    var data = await fetch('http://localhost:3000/sessions');
+    var options = {
+      method: 'GET',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    }
+    var data = await fetch('http://localhost:3000/sessions',options);
       return data.json();
   }
 

@@ -1,7 +1,6 @@
 var minutes = 4;
 var seconds = 59;
 var expired = false;
-var uniqueID;
 async function generateUniqueID(){
     return '_' + Math.random().toString(36).substr(2, 9);
 }
@@ -23,6 +22,7 @@ async function getPurchaseData(){
 function goToIndex(){
     localStorage.clear();
     alert("Sua sessão será expirada. Você será redirecinado para a página inicial");
+    expired = true;
     window.open("index.html", "_self");
 }
 
@@ -64,7 +64,7 @@ async function makePayment(){
             for(var j in seats){
                 if(session.seats[seats[j]].client_id == null){
                     session.seats[seats[j]-1].seat = seats[j];
-                    session.seats[seats[j]-1].client_id = uniqueID;
+                    session.seats[seats[j]-1].client_id = await generateUniqueID();
                 }
                 else{
                     purchased = true;
