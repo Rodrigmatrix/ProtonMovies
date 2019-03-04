@@ -445,11 +445,10 @@ function removeSelected(seat){
 }
 
 function selectSeat(seat){
-    // //localStorage.setItem("lastname", "Smith");
-    // console.log(localStorage.getItem("lastname"));
     var image = document.getElementById(seat).src;
+    // FIXME a posição do vetor pode variar
     image = image.split("/");
-    image = image[9];
+    image = image[10];
     if(image == "selected.png"){
         document.getElementById(seat).src = "free.png";
         selectedArray[seat]=null;
