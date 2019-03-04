@@ -195,7 +195,7 @@ async function displaySessions(){
                 <td>${sessions[i].auditorium}</td>
                 <td>${sessions[i].image_type}</td>
                 <td>
-                <a href="file:///Users/rodrigogomes/Documents/Codes/ProtonMovies/src/buyTicket.html?sessionid=${sessions[i].id}" class="blue left waves-effect waves-light btn ">${hour+":"+minutes}</a>
+                <a href="buyTicket.html?sessionid=${sessions[i].id}" class="blue left waves-effect waves-light btn ">${hour+":"+minutes}</a>
                 </td>
             </tr>
            

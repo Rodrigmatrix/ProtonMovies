@@ -1,16 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
 $(document).ready(function() {
     // Radio box border
     $('.method').on('click', function() {

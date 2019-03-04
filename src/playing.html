@@ -43,53 +43,26 @@
         
         </div>
     </nav>
-    <!--Banner -->
-    <div class="slider">
-        <ul class="slides">
-          <li>
-            <img src="https://bransonimax.com/wp-content/uploads/2017/04/IMAXNewTheater.jpg"> <!-- random image -->
-            <div class="caption center-align">
-              <h3>Cinema Proton Movies</h3>
-              <h5 class="light grey-text text-lighten-3">Compre seu ingresso agora mesmo</h5>
-            </div>
-          </li>
-          <li>
-            <img src="https://images4.alphacoders.com/909/thumb-1920-909185.jpg"> 
-            <div class="caption bottom">
-              <h3>Vingadores Guerra Infinita</h3>
-              <h5 class="light grey-text text-lighten-3">Mais Vendidos</h5>
-            </div>
-          </li>
-        </ul>
-      </div>
-          
-    <div class="card-panel blue z-depth-5 center bold">Em Cartaz</div>
-    <ul class="sidenav" id="desktop">
-        <li><a href="#">Todos as Sessões</a></li>
+    <body>
+
+      <div class="card-panel blue center bold z-depth-5">Em Cartaz</div>
+      <ul class="sidenav" id="desktop">
+        <li><a href="playing.html">Todas as Sessões</a></li>
         <li><a href="login.html">Login</a></li>
         <li><a href="about.html">Sobre</a></li>
-    </ul>
-    <div class="row">
-            <div class="col s12 m7">
-              <div class="card">
-                <div class="card-image">
-
-                  <img src="assets/infinitywar.jpg">
-                  <span class="card-title" position="center">Guerra Infinita</span>
-                </div>
-                <div class="card-content">
-                  <p>Homem de Ferro, Thor, Hulk e os Vingadores se unem para combater seu inimigo mais poderoso, 
-                      o maligno Thanos. Em uma missão para coletar todas as seis pedras infinitas,
-                       Thanos planeja usá-las para infligir sua vontade maléfica sobre a realidade.</p>
-                </div>
-                <div class="card-action">
-                  <a href="#">Ver mais</a>
-                </div>
-              </div>
-            </div>
-          </div>
-   
-</body>
+      </ul>
+      <div id="moviesPlaying" class="row">
+        
+      </div>
+      <div class="card-panel blue center bold z-depth-5">Em Breve</div>
+      <div id="moviesNotPlaying" class="row">
+        
+        </div>
+        <ul class="collection with-header"></ul>
+      
+      <script src="Api.js"></script>
+      <script src="Movies.js"></script>
+      </body>
 <footer class="blue page-footer">
   <div class="container">
     <div class="row">
@@ -116,7 +89,7 @@
 $(document).ready(function(){
     $('.sidenav').sidenav();
 })
-
+displayPlayingMovies();
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.slider');
     var instances = M.Slider.init(elems, options);
